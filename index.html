@@ -4,21 +4,20 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>LosMotos – Bazar & Motosalon</title>
-  <meta name="description" content="LosMotos – kamenný motosalon a bazar motorek. Výkup a komisní prodej, financování, pojištění, dovoz a servis. Otevřeno Po–So v Praze." />
+  <meta name="description" content="LosMotos – kamenný motosalon a bazar motorek. Výkup, financování, dovoz a servis. Otevřeno Po–So v Praze." />
   <meta name="theme-color" content="#0f172a" />
   <meta property="og:title" content="LosMotos – Bazar motorek" />
-  <meta property="og:description" content="Prohlédni si nabídku motorek, filtruj podle značky, roku či ceny a najdi tu pravou." />
+  <meta property="og:description" content="Nabídka motorek skladem, výkup, financování a servis. Praha 9." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="images/og.jpg" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🏍️</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23f97316'/><text x='50' y='65' text-anchor='middle' font-size='60'>🏍️</text></svg>">
   <style>
     :root{
       --bg: #0b1020;          /* page bg in dark */
       --panel: #0f172a;       /* panels/cards */
       --ink: #e2e8f0;         /* text */
       --muted:#9aa5b1;        /* muted text */
-      --accent:#f97316;       /* orange */
-      --accent-2:#06b6d4;     /* cyan */
+      --accent:#f97316;       /* brand accent */
       --ring: rgba(249,115,22,.35);
       --ok: #10b981;
       --danger: #ef4444;
@@ -39,12 +38,12 @@
     header{position:sticky; top:0; z-index:50; backdrop-filter:saturate(180%) blur(8px); background: linear-gradient(180deg, rgba(11,16,32,.9), rgba(11,16,32,.75)); border-bottom:1px solid rgba(255,255,255,.06)}
     .nav{display:flex; align-items:center; gap:16px; padding:14px 0}
     .brand{display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:.5px}
-    .logo{width:38px; height:38px; display:grid; place-items:center; background:conic-gradient(from 180deg,#f97316,#06b6d4); border-radius:12px; box-shadow:var(--shadow)}
+    .logo{width:38px; height:38px; display:grid; place-items:center; background:var(--accent); border-radius:12px; box-shadow:var(--shadow)}
     .logo svg{width:24px; height:24px; fill:#0b1020}
     .pill{margin-left:auto; display:flex; align-items:center; gap:8px}
-    .pill button{appearance:none; border:0; padding:10px 14px; border-radius:12px; background:#0c142c; color:var(--ink); cursor:pointer; border:1px solid rgba(255,255,255,.08)}
-    .pill button:hover{outline:2px solid var(--ring)}
-    .cta{background:linear-gradient(135deg,var(--accent),var(--accent-2)); font-weight:700; box-shadow:0 10px 20px rgba(6,182,212,.25);}
+    .pill .btn{appearance:none; border:0; padding:10px 14px; border-radius:12px; background:#0c142c; color:var(--ink); cursor:pointer; border:1px solid rgba(255,255,255,.08)}
+    .pill .btn:hover{outline:2px solid var(--ring)}
+    .cta{background:var(--accent); font-weight:700; box-shadow:0 10px 20px rgba(249,115,22,.25);} 
 
     /* Hero */
     .hero{padding:42px 0 24px}
@@ -52,21 +51,21 @@
     .hero-card{background:linear-gradient(160deg, rgba(15,23,42,.85), rgba(15,23,42,.55)); border:1px solid rgba(255,255,255,.08); padding:24px; border-radius:20px; box-shadow:var(--shadow)}
     .hero h1{margin:6px 0 8px; font-size:clamp(28px, 3.4vw, 46px)}
     .hero p{color:var(--muted)}
+    .badge-accent{color:var(--accent); font-weight:700; letter-spacing:.3px}
     .stats{display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:18px}
     .stat{background:#0c142c; padding:14px; border-radius:14px; text-align:center; border:1px solid rgba(255,255,255,.06)}
     .stat strong{display:block; font-size:20px}
 
     .search-panel{background:linear-gradient(160deg, rgba(15,23,42,.85), rgba(15,23,42,.55)); border:1px solid rgba(255,255,255,.08); padding:16px; border-radius:20px; box-shadow:var(--shadow)}
-    .filters{display:grid; grid-template-columns:2fr 1.2fr 1.2fr 1.2fr 1.2fr; gap:10px}
-    .filters input,.filters select{width:100%; padding:12px 12px; background:#0c142c; border:1px solid rgba(255,255,255,.06); border-radius:12px; color:var(--ink)}
-    .filters input:focus,.filters select:focus{outline:2px solid var(--ring)}
-    .filters .btn{padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,.08); background:#0c142c; cursor:pointer}
+    .filters{display:grid; grid-template-columns:1.2fr 1.2fr 1fr 1fr 1fr; gap:10px}
+    .filters select{width:100%; padding:12px 12px; background:#0c142c; border:1px solid rgba(255,255,255,.06); border-radius:12px; color:var(--ink)}
+    .filters select:focus{outline:2px solid var(--ring)}
 
     /* Grid */
     .section{padding:20px 0 64px}
     .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
-    @media (max-width: 980px){.hero .wrap{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr)}.filters{grid-template-columns:1.5fr 1fr 1fr 1fr 1fr}}
-    @media (max-width: 640px){.grid{grid-template-columns:1fr}.filters{grid-template-columns:1fr 1fr}.pill{display:none}}
+    @media (max-width: 980px){.hero .wrap{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr)}.filters{grid-template-columns:1fr 1fr 1fr 1fr 1fr}}
+    @media (max-width: 640px){.grid{grid-template-columns:1fr}.pill{display:none}}
 
     .card{background:linear-gradient(180deg, rgba(15,23,42,.9), rgba(15,23,42,.75)); border:1px solid rgba(255,255,255,.08); border-radius:18px; overflow:hidden; box-shadow:var(--shadow); display:flex; flex-direction:column}
     .thumb{aspect-ratio: 16/10; width:100%; background:#111; position:relative}
@@ -80,10 +79,9 @@
     .meta span{display:inline-flex; align-items:center; gap:6px}
     .actions{margin-top:auto; display:flex; gap:8px}
     .actions .btn{flex:1; padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,.08); background:#0c142c; cursor:pointer}
-    .btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent-2)); font-weight:700}
+    .btn.primary{background:var(--accent); font-weight:700}
     .btn:hover{outline:2px solid var(--ring)}
 
-    /* Empty state */
     .empty{padding:48px; text-align:center; color:var(--muted); border:1px dashed rgba(255,255,255,.15); border-radius:16px}
 
     /* Modal */
@@ -105,22 +103,9 @@
     footer{border-top:1px solid rgba(255,255,255,.08); padding:26px 0; color:var(--muted)}
     .footer-grid{display:grid; grid-template-columns:1fr auto; gap:16px; align-items:center}
 
-    /* Utils */
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
     .hidden{display:none}
   </style>
-<script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "AutomotiveBusiness",
-    "name": "LosMotos",
-    "image": "images/og.jpg",
-    "address": {"@type":"PostalAddress","streetAddress":"Kolbenova 12","addressLocality":"Praha","postalCode":"190 00","addressCountry":"CZ"},
-    "telephone": "+420700000000",
-    "openingHours": ["Mo-Fr 10:00-18:00", "Sa 10:00-14:00"],
-    "url": "https://your-github-username.github.io/losmotos/"
-  }
-</script>
 </head>
 <body>
   <header>
@@ -137,7 +122,7 @@
           <a class="btn" href="#vykup">Výkup</a>
           <a class="btn" href="#sluzby">Služby</a>
           <a class="btn" href="#onas">O&nbsp;nás</a>
-          <a class="cta" href="#kontakt">Kontakt</a>
+          <a class="cta btn" href="#kontakt">Kontakt</a>
         </nav>
         <a class="btn" href="tel:+420700000000" title="Zavolat">📞 +420 700 000 000</a>
       </div>
@@ -148,9 +133,9 @@
     <section class="hero">
       <div class="container wrap">
         <div class="hero-card">
-          <p style="margin:0;color:var(--accent-2);font-weight:700;letter-spacing:.3px">Kamenný motosalon & bazar</p>
+          <p class="badge-accent">Kamenný motosalon & bazar</p>
           <h1>LosMotos: výkup, prodej a servis motorek na jednom místě.</h1>
-          <p>Jsme malý nezávislý obchod s motorkami. Vykupujeme stroje za férové ceny, nabízíme <strong>komisní prodej</strong>, zajišťujeme <strong>financování i pojištění</strong>, dovoz a základní <strong>servis</strong>. Otevřeno Po–So v Praze. Vyber si motorku níž nebo nám pošli tu svou k výkupu.</p>
+          <p>Jsme nezávislý obchod s motorkami. Vykupujeme stroje za férové ceny, zajišťujeme <strong>financování</strong>, dovoz a základní <strong>servis</strong>. Otevřeno Po–So v Praze. Vyber si motorku níž nebo nám pošli tu svou k výkupu.</p>
           <div class="stats">
             <div class="stat"><strong id="stCount">—</strong><small>skladem</small></div>
             <div class="stat"><strong id="stAvg">—</strong><small>průměrná cena</small></div>
@@ -164,9 +149,11 @@
         </div>
         <div class="search-panel">
           <form id="filters" class="filters" onsubmit="return false">
-            <input id="q" type="search" placeholder="Hledat model, popis…" aria-label="Hledat" />
             <select id="brand" aria-label="Značka">
               <option value="">Značka</option>
+            </select>
+            <select id="model" aria-label="Model" disabled>
+              <option value="">Model</option>
             </select>
             <select id="year" aria-label="Rok od">
               <option value="">Rok od</option>
@@ -197,7 +184,7 @@
         <h2 style="margin-top:0">Nabídka motorek skladem</h2>
         <p style="color:var(--muted);margin-top:-6px">Všechny stroje prochází základní kontrolou. Možnost výkupu protiúčtem.</p>
         <div id="grid" class="grid" aria-live="polite"></div>
-        <div id="empty" class="empty hidden">Nenalezeny žádné inzeráty. Změň filtr nebo přidej své <button class="btn" id="btnAdd2">+ Přidat</button>.</div>
+        <div id="empty" class="empty hidden">Nenalezeny žádné motorky podle filtru.</div>
       </div>
     </section>
 
@@ -206,12 +193,11 @@
         <div class="hero-card">
           <h2 style="margin-top:0">Naše služby</h2>
           <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
-            <div class="spec"><h3>Komisní prodej</h3><p>Zařídíme nafocení, inzerci, jednání se zájemci a přepis. Jasná provize, bez skrytých poplatků.</p></div>
             <div class="spec"><h3>Výkup za hotové</h3><p>Okamžitá nabídka po fotkách nebo osobně. Peníze ihned na ruku / na účet.</p></div>
-            <div class="spec"><h3>Servis a příprava</h3><p>Výměna oleje, brzd, řetězu, diagnostika, STK. Prohlídka na zvedáku před koupí.</p></div>
+            <div class="spec"><h3>Servis a příprava</h3><p>Olej, brzdy, řetěz, diagnostika, STK. Prohlídka na zvedáku před koupí.</p></div>
             <div class="spec"><h3>Financování</h3><p>Leasing/úvěr u partnerů. Předběžné schválení během pár minut.</p></div>
-            <div class="spec"><h3>Povinné a havarijní</h3><p>Vyřídíme pojištění na místě, výběr z více pojišťoven.</p></div>
             <div class="spec"><h3>Doprava</h3><p>Bezpečný dovoz motorky až k tobě domů po celé ČR.</p></div>
+            <div class="spec"><h3>Testovací jízda</h3><p>Po domluvě dle počasí a dokumentů. Vratná kauce.</p></div>
           </div>
         </div>
       </div>
@@ -324,7 +310,7 @@
   <!-- ADD / IMPORT MODAL -->
   <dialog id="edit">
     <div class="modal-head">
-      <strong>Přidat inzerát</strong>
+      <strong>Přidat motorku</strong>
       <button id="edClose" class="btn" style="padding:8px 12px">Zavřít</button>
     </div>
     <div class="modal-body">
@@ -358,7 +344,7 @@
   </dialog>
 
 <script>
-// --- Sample data (nahraď svými fotkami v /images) ---
+// --- Ukázková data (nahraď svými fotkami v /images) ---
 const initialBikes = [
   {id:1, brand:'Honda', model:'CB500F', year:2019, price:119000, km:18500, cc:471, power:35, location:'Praha', owner:'Lukáš', email:'lukas@example.com', phone:'+420700000001', images:['images/cb500f_1.jpg','images/cb500f_2.jpg','images/cb500f_3.jpg'], desc:'Lehký naháč, perfektní do města i na okresky. Serviska, 2 klíče.'},
   {id:2, brand:'Yamaha', model:'MT-07', year:2021, price:159000, km:12000, cc:689, power:54, location:'Brno', owner:'Jana', email:'jana@example.com', phone:'+420700000002', images:['images/mt07_1.jpg','images/mt07_2.jpg'], desc:'Zábavný dvouválec CP2, bez investic. Nové pneu 2024.'},
@@ -374,7 +360,7 @@ const $$ = sel => Array.from(document.querySelectorAll(sel));
 const state = {
   bikes: [],
   filtered: [],
-  q:'', brand:'', year:'', price:'', sort:'-date'
+  brand:'', model:'', year:'', price:'', sort:'-date'
 };
 
 function loadDB(){
@@ -384,7 +370,6 @@ function loadDB(){
   } else {
     state.bikes = initialBikes;
   }
-  // add timestamps if missing
   const now = Date.now();
   state.bikes.forEach((b,i)=>{ if(!b.date){ b.date = now - i*3600_000 } });
 }
@@ -399,17 +384,26 @@ function populateFilters(){
   const year = $('#year');
   const years = [...new Set(state.bikes.map(b=>b.year))].sort((a,b)=>b-a);
   year.innerHTML = '<option value="">Rok od</option>' + years.map(y=>`<option value="${y}">${y}</option>`).join('');
+  populateModels();
+}
+
+function populateModels(){
+  const model = $('#model');
+  const models = state.brand ? [...new Set(state.bikes.filter(b=>b.brand===state.brand).map(b=>b.model))].sort() : [];
+  model.innerHTML = '<option value="">Model</option>' + models.map(m=>`<option>${m}</option>`).join('');
+  model.disabled = models.length===0;
+  if(!models.includes(state.model)) state.model='';
 }
 
 function humanPrice(v){ return v.toLocaleString('cs-CZ') + ' Kč'; }
 
 function applyFilters(){
-  const {q,brand,year,price,sort} = state;
+  const {brand,model,year,price,sort} = state;
   let list = state.bikes.filter(b=>{
     if(brand && b.brand!==brand) return false;
+    if(model && b.model!==model) return false;
     if(year && b.year < +year) return false;
     if(price && b.price > +price) return false;
-    if(q){ const s=(b.brand+' '+b.model+' '+(b.desc||'')).toLowerCase(); if(!s.includes(q.toLowerCase())) return false; }
     return true;
   });
   const cmp = (a,b,key,rev=false)=> (rev? (b[key]-a[key]) : (a[key]-b[key]));
@@ -497,8 +491,8 @@ function openDetail(id){
 }
 
 function wireUI(){
-  ['q','brand','year','price','sort'].forEach(id=>{
-    $('#'+id).addEventListener('input', e=>{ state[id] = e.target.value; applyFilters(); })
+  ['brand','model','year','price','sort'].forEach(id=>{
+    $('#'+id).addEventListener('input', e=>{ state[id] = e.target.value; if(id==='brand'){ populateModels(); } applyFilters(); })
   });
   $('#grid').addEventListener('click', e=>{
     const btn = e.target.closest('[data-act]');
@@ -512,10 +506,8 @@ function wireUI(){
     }
   });
   $('#mdClose').onclick = ()=> $('#modal').close();
-  $('#btnAdd').onclick = ()=> $('#edit').showModal();
-  $('#btnAdd2').onclick = ()=> $('#edit').showModal();
+  $('#btnAdd') && ($('#btnAdd').onclick = ()=> $('#edit').showModal());
   $('#edClose').onclick = ()=> $('#edit').close();
-  $('#btnImport').onclick = ()=> { $('#edit').showModal(); $('#fileJson').click(); };
   $('#fileJson').addEventListener('change', importJson, false);
   $('#edForm').addEventListener('submit', submitForm, false);
   $('#resetDb').onclick = ()=>{ if(confirm('Smazat lokální data?')){ localStorage.removeItem('losmotos.db'); loadDB(); populateFilters(); applyFilters(); } };
@@ -543,7 +535,6 @@ async function importJson(evt){
     const text = await file.text();
     const arr = JSON.parse(text);
     if(!Array.isArray(arr)) throw new Error('JSON musí být pole objektů');
-    // Basic sanitize
     arr.forEach((b,i)=>{ b.id = nextId()+i; b.date = Date.now()-i*1000; b.images = Array.isArray(b.images)? b.images: (b.images? String(b.images).split(',').map(s=>s.trim()):[]); });
     state.bikes = arr.concat(state.bikes);
     saveDB(); populateFilters(); applyFilters();
@@ -561,6 +552,7 @@ function init(){
 
 init();
 </script>
+
 <div id="cookie" style="position:fixed;left:16px;right:16px;bottom:16px;background:#0c142c;border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:12px;display:none;box-shadow:var(--shadow)">
   <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:space-between">
     <span>🍪 Tento web používá pouze nezbytné cookies pro provoz (localStorage). Více v podmínkách.</span>
@@ -571,9 +563,21 @@ init();
   (function(){
     if(!localStorage.getItem('lm.cookie')){ document.getElementById('cookie').style.display='block'; }
     document.getElementById('cookieOk').onclick=function(){ localStorage.setItem('lm.cookie','1'); document.getElementById('cookie').remove(); };
-    // odeslání formuláře výkupu
     const sf = document.getElementById('sellForm'); if(sf){ sf.addEventListener('submit', function(e){ e.preventDefault(); const d = Object.fromEntries(new FormData(sf).entries()); const mail = `mailto:info@losmotos.cz?subject=${encodeURIComponent('Výkup: '+(d.brand||'')+' '+(d.model||''))}&body=${encodeURIComponent(JSON.stringify(d,null,2))}`; window.location.href = mail; }); }
   })();
+</script>
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AutomotiveBusiness",
+    "name": "LosMotos",
+    "image": "images/og.jpg",
+    "address": {"@type":"PostalAddress","streetAddress":"Kolbenova 12","addressLocality":"Praha","postalCode":"190 00","addressCountry":"CZ"},
+    "telephone": "+420700000000",
+    "openingHours": ["Mo-Fr 10:00-18:00", "Sa 10:00-14:00"],
+    "url": "https://your-github-username.github.io/losmotos/"
+  }
 </script>
 </body>
 </html>
