@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LosMotos – Bazar motorek</title>
+  <meta name="description" content="LosMotos – český bazar motorek. Prodej a nákup motocyklů, rychlé filtrování, vyhledávání, fotky a detailní parametry." />
+  <meta name="theme-color" content="#0f172a" />
+  <meta property="og:title" content="LosMotos – Bazar motorek" />
+  <meta property="og:description" content="Prohlédni si nabídku motorek, filtruj podle značky, roku či ceny a najdi tu pravou." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="images/og.jpg" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🏍️</text></svg>">
+  <style>
+    :root{
+      --bg: #0b1020;          /* page bg in dark */
+      --panel: #0f172a;       /* panels/cards */
+      --ink: #e2e8f0;         /* text */
+      --muted:#9aa5b1;        /* muted text */
+      --accent:#f97316;       /* orange */
+      --accent-2:#06b6d4;     /* cyan */
+      --ring: rgba(249,115,22,.35);
+      --ok: #10b981;
+      --danger: #ef4444;
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;
+      color:var(--ink); background: radial-gradient(1200px 600px at 10% -10%, #182449 0%, transparent 60%),
+                         radial-gradient(900px 500px at 90% -20%, #0a3a45 0%, transparent 55%),
+                         var(--bg);
+    }
+    a{color:inherit; text-decoration:none}
+    .container{max-width:1200px; margin:0 auto; padding:0 16px}
+
+    /* Header */
+    header{position:sticky; top:0; z-index:50; backdrop-filter:saturate(180%) blur(8px); background: linear-gradient(180deg, rgba(11,16,32,.9), rgba(11,16,32,.75)); border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav{display:flex; align-items:center; gap:16px; padding:14px 0}
+    .brand{display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:.5px}
+    .logo{width:38px; height:38px; display:grid; place-items:center; background:conic-gradient(from 180deg,#f97316,#06b6d4); border-radius:12px; box-shadow:var(--shadow)}
+    .logo svg{width:24px; height:24px; fill:#0b1020}
+    .pill{margin-left:auto; display:flex; align-items:center; gap:8px}
+    .pill button{appearance:none; border:0; padding:10px 14px; border-radius:12px; background:#0c142c; color:var(--ink); cursor:pointer; border:1px solid rgba(255,255,255,.08)}
+    .pill button:hover{outline:2px solid var(--ring)}
+    .cta{background:linear-gradient(135deg,var(--accent),var(--accent-2)); font-weight:700; box-shadow:0 10px 20px rgba(6,182,212,.25);}
+
+    /* Hero */
+    .hero{padding:42px 0 24px}
+    .hero .wrap{display:grid; grid-template-columns:1.2fr .8fr; gap:24px}
+    .hero-card{background:linear-gradient(160deg, rgba(15,23,42,.85), rgba(15,23,42,.55)); border:1px solid rgba(255,255,255,.08); padding:24px; border-radius:20px; box-shadow:var(--shadow)}
+    .hero h1{margin:6px 0 8px; font-size:clamp(28px, 3.4vw, 46px)}
+    .hero p{color:var(--muted)}
+    .stats{display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:18px}
+    .stat{background:#0c142c; padding:14px; border-radius:14px; text-align:center; border:1px solid rgba(255,255,255,.06)}
+    .stat strong{display:block; font-size:20px}
+
+    .search-panel{background:linear-gradient(160deg, rgba(15,23,42,.85), rgba(15,23,42,.55)); border:1px solid rgba(255,255,255,.08); padding:16px; border-radius:20px; box-shadow:var(--shadow)}
+    .filters{display:grid; grid-template-columns:2fr 1.2fr 1.2fr 1.2fr 1.2fr; gap:10px}
+    .filters input,.filters select{width:100%; padding:12px 12px; background:#0c142c; border:1px solid rgba(255,255,255,.06); border-radius:12px; color:var(--ink)}
+    .filters input:focus,.filters select:focus{outline:2px solid var(--ring)}
+    .filters .btn{padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,.08); background:#0c142c; cursor:pointer}
+
+    /* Grid */
+    .section{padding:20px 0 64px}
+    .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+    @media (max-width: 980px){.hero .wrap{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr)}.filters{grid-template-columns:1.5fr 1fr 1fr 1fr 1fr}}
+    @media (max-width: 640px){.grid{grid-template-columns:1fr}.filters{grid-template-columns:1fr 1fr}.pill{display:none}}
+
+    .card{background:linear-gradient(180deg, rgba(15,23,42,.9), rgba(15,23,42,.75)); border:1px solid rgba(255,255,255,.08); border-radius:18px; overflow:hidden; box-shadow:var(--shadow); display:flex; flex-direction:column}
+    .thumb{aspect-ratio: 16/10; width:100%; background:#111; position:relative}
+    .thumb img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
+    .badge{position:absolute; top:10px; left:10px; background:rgba(0,0,0,.55); backdrop-filter: blur(4px); border:1px solid rgba(255,255,255,.15); padding:6px 10px; border-radius:999px; font-size:12px}
+    .body{padding:14px}
+    .title{display:flex; justify-content:space-between; gap:8px; align-items:center}
+    .title h3{margin:0; font-size:18px}
+    .price{font-weight:800; letter-spacing:.2px}
+    .meta{display:flex; gap:10px; color:var(--muted); font-size:13px; margin:6px 0 10px}
+    .meta span{display:inline-flex; align-items:center; gap:6px}
+    .actions{margin-top:auto; display:flex; gap:8px}
+    .actions .btn{flex:1; padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,.08); background:#0c142c; cursor:pointer}
+    .btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent-2)); font-weight:700}
+    .btn:hover{outline:2px solid var(--ring)}
+
+    /* Empty state */
+    .empty{padding:48px; text-align:center; color:var(--muted); border:1px dashed rgba(255,255,255,.15); border-radius:16px}
+
+    /* Modal */
+    dialog{width:min(920px, 94vw); border:1px solid rgba(255,255,255,.15); background:linear-gradient(160deg, rgba(15,23,42,.98), rgba(15,23,42,.9)); color:var(--ink); border-radius:20px; box-shadow:var(--shadow)}
+    dialog::backdrop{background:rgba(0,0,0,.55)}
+    .modal-head{display:flex; justify-content:space-between; align-items:center; padding:14px 16px; border-bottom:1px solid rgba(255,255,255,.08)}
+    .modal-body{padding:16px}
+    .detail{display:grid; grid-template-columns:1.1fr .9fr; gap:16px}
+    @media (max-width:900px){.detail{grid-template-columns:1fr}}
+    .gallery{display:grid; grid-template-columns:1fr .35fr; gap:10px}
+    .gallery .main{aspect-ratio: 16/10; background:#111; border-radius:12px; overflow:hidden}
+    .gallery img{width:100%; height:100%; object-fit:cover}
+    .thumbs{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+    .thumbs .t{aspect-ratio: 16/10; overflow:hidden; border-radius:10px; cursor:pointer; border:1px solid rgba(255,255,255,.08)}
+    .spec{background:#0c142c; border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:14px}
+    .spec table{width:100%; border-collapse:separate; border-spacing:0 8px; font-size:14px}
+    .spec td:first-child{color:var(--muted); width:40%}
+
+    footer{border-top:1px solid rgba(255,255,255,.08); padding:26px 0; color:var(--muted)}
+    .footer-grid{display:grid; grid-template-columns:1fr auto; gap:16px; align-items:center}
+
+    /* Utils */
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .hidden{display:none}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#" aria-label="LosMotos – domů">
+        <span class="logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 14h2l3-5h3l2 2h3l3 3h2" stroke="black" stroke-width="2" fill="none"/><circle cx="7" cy="16" r="3"/><circle cx="19" cy="16" r="3"/></svg>
+        </span>
+        <span>LosMotos</span>
+      </a>
+      <div class="pill">
+        <button id="btnImport" title="Import inzerátů z JSON">Import JSON</button>
+        <button id="btnAdd" title="Přidat inzerát">+ Přidat</button>
+        <a class="cta" href="#contact" title="Kontakt">Kontakt</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container wrap">
+        <div class="hero-card">
+          <p style="margin:0;color:var(--accent-2);font-weight:700;letter-spacing:.3px">Český bazar motorek</p>
+          <h1>Najdi si svou další motorku. <span style="color:var(--accent)">Rychle</span>, přehledně a bez keců.</h1>
+          <p>Filtruj podle značky, roku, objemu, najetých km nebo ceny. Klikni na detail, prohlédni fotky a napiš majiteli. Vše funguje staticky na GitHub Pages – žádný backend, žádné starosti.</p>
+          <div class="stats">
+            <div class="stat"><strong id="stCount">—</strong><small>aktivních inzerátů</small></div>
+            <div class="stat"><strong id="stAvg">—</strong><small>průměrná cena</small></div>
+            <div class="stat"><strong id="stNewest">—</strong><small>nejnovější ročník</small></div>
+          </div>
+        </div>
+        <div class="search-panel">
+          <form id="filters" class="filters" onsubmit="return false">
+            <input id="q" type="search" placeholder="Hledat model, popis…" aria-label="Hledat" />
+            <select id="brand" aria-label="Značka">
+              <option value="">Značka</option>
+            </select>
+            <select id="year" aria-label="Rok od">
+              <option value="">Rok od</option>
+            </select>
+            <select id="price" aria-label="Cena do">
+              <option value="">Cena do</option>
+              <option value="50000">50 000 Kč</option>
+              <option value="100000">100 000 Kč</option>
+              <option value="150000">150 000 Kč</option>
+              <option value="250000">250 000 Kč</option>
+            </select>
+            <select id="sort" aria-label="Řazení">
+              <option value="-date">Nejnovější</option>
+              <option value="price">Cena ↑</option>
+              <option value="-price">Cena ↓</option>
+              <option value="year">Rok ↑</option>
+              <option value="-year">Rok ↓</option>
+              <option value="km">Km ↑</option>
+              <option value="-km">Km ↓</option>
+            </select>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div id="grid" class="grid" aria-live="polite"></div>
+        <div id="empty" class="empty hidden">Nenalezeny žádné inzeráty. Změň filtr nebo přidej své <button class="btn" id="btnAdd2">+ Přidat</button>.</div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="hero-card">
+          <h2 style="margin-top:0">Kontakt</h2>
+          <p>Chceš přidat větší počet motorek najednou? Pošli JSON / CSV nebo napiš zprávu.</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr; gap:16px">
+            <a class="btn" href="mailto:info@losmotos.cz?subject=Poptávka%20bazar" style="text-align:center;padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:#0c142c">✉️ info@losmotos.cz</a>
+            <a class="btn" href="https://wa.me/420000000000" target="_blank" rel="noopener" style="text-align:center;padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:#0c142c">💬 WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <small>© <span id="yearNow"></span> LosMotos</small>
+      <small>Statická aplikace · GitHub Pages ready 🚀</small>
+    </div>
+  </footer>
+
+  <!-- DETAIL MODAL -->
+  <dialog id="modal">
+    <div class="modal-head">
+      <strong id="mdTitle">Detail</strong>
+      <button id="mdClose" class="btn" style="padding:8px 12px">Zavřít</button>
+    </div>
+    <div class="modal-body">
+      <div class="detail">
+        <div class="gallery">
+          <div class="main"><img id="mdImg" alt="Motorka" /></div>
+          <div class="thumbs" id="mdThumbs"></div>
+        </div>
+        <div>
+          <div class="spec">
+            <table id="mdSpec"></table>
+          </div>
+          <div class="actions" style="margin-top:12px">
+            <a id="mdMail" class="btn" href="#">✉️ Napsat prodávajícímu</a>
+            <a id="mdCall" class="btn" href="#">📞 Zavolat</a>
+            <a id="mdReserve" class="btn primary" href="#">Rezervovat</a>
+          </div>
+        </div>
+      </div>
+      <p id="mdDesc" style="color:var(--muted); margin-top:16px"></p>
+    </div>
+  </dialog>
+
+  <!-- ADD / IMPORT MODAL -->
+  <dialog id="edit">
+    <div class="modal-head">
+      <strong>Přidat inzerát</strong>
+      <button id="edClose" class="btn" style="padding:8px 12px">Zavřít</button>
+    </div>
+    <div class="modal-body">
+      <form id="edForm" class="detail" autocomplete="off">
+        <div class="spec" style="grid-column: span 2">
+          <div style="display:grid; grid-template-columns:repeat(6,1fr); gap:10px">
+            <input name="brand" placeholder="Značka" required>
+            <input name="model" placeholder="Model" required>
+            <input name="year" type="number" min="1970" max="2100" placeholder="Rok" required>
+            <input name="price" type="number" min="0" step="1000" placeholder="Cena (Kč)" required>
+            <input name="km" type="number" min="0" step="100" placeholder="Kilometry" required>
+            <input name="cc" type="number" min="0" step="50" placeholder="Objem (ccm)" required>
+            <input name="power" type="number" min="0" step="1" placeholder="Výkon (kW)">
+            <input name="owner" placeholder="Majitel">
+            <input name="email" type="email" placeholder="E‑mail">
+            <input name="phone" placeholder="Telefon">
+            <input name="location" placeholder="Lokace (město)">
+            <input name="images" placeholder="Obrázky (oddělit čárkou)">
+          </div>
+          <textarea name="desc" rows="4" placeholder="Popis" style="margin-top:10px;width:100%;background:#0c142c;border:1px solid rgba(255,255,255,.08);border-radius:12px;color:var(--ink);padding:10px"></textarea>
+          <div style="display:flex; gap:10px; margin-top:10px">
+            <button class="btn primary" type="submit">Uložit</button>
+            <button class="btn" type="button" id="resetDb">Smazat lokální data</button>
+            <label class="btn" for="fileJson" style="display:inline-flex;align-items:center;gap:8px;cursor:pointer">📁 Import JSON</label>
+            <input id="fileJson" type="file" accept="application/json" class="sr-only" />
+          </div>
+          <p style="color:var(--muted); margin-top:10px">Obrázky nahrávej do složky <code>/images</code> v repu a uveď názvy souborů (např. <code>cb500_1.jpg, cb500_2.jpg</code>). Žádný backend – vše běží v prohlížeči a ukládá se do <em>localStorage</em>.</p>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+<script>
+// --- Sample data (nahraď svými fotkami v /images) ---
+const initialBikes = [
+  {id:1, brand:'Honda', model:'CB500F', year:2019, price:119000, km:18500, cc:471, power:35, location:'Praha', owner:'Lukáš', email:'lukas@example.com', phone:'+420700000001', images:['images/cb500f_1.jpg','images/cb500f_2.jpg','images/cb500f_3.jpg'], desc:'Lehký naháč, perfektní do města i na okresky. Serviska, 2 klíče.'},
+  {id:2, brand:'Yamaha', model:'MT-07', year:2021, price:159000, km:12000, cc:689, power:54, location:'Brno', owner:'Jana', email:'jana@example.com', phone:'+420700000002', images:['images/mt07_1.jpg','images/mt07_2.jpg'], desc:'Zábavný dvouválec CP2, bez investic. Nové pneu 2024.'},
+  {id:3, brand:'BMW', model:'R nineT', year:2017, price:259000, km:22000, cc:1170, power:81, location:'Plzeň', owner:'Martin', email:'martin@example.com', phone:'+420700000003', images:['images/rninet_1.jpg','images/rninet_2.jpg','images/rninet_3.jpg'], desc:'Klasika s boxerem, spousta doplňků, originál díly přidám.'},
+  {id:4, brand:'Kawasaki', model:'Z900', year:2020, price:199000, km:9500, cc:948, power:92, location:'Ostrava', owner:'Petr', email:'petr@example.com', phone:'+420700000004', images:['images/z900_1.jpg'], desc:'Výkon i pohodlí. První majitel, garážovaná.'},
+  {id:5, brand:'Ducati', model:'Monster 821', year:2018, price:229000, km:17000, cc:821, power:80, location:'Hradec Králové', owner:'Eva', email:'eva@example.com', phone:'+420700000005', images:['images/monster_1.jpg','images/monster_2.jpg'], desc:'Italský charakter, pravidelný servis Ducati, quickshifter.'},
+  {id:6, brand:'Suzuki', model:'SV650', year:2016, price:99000, km:33000, cc:645, power:56, location:'Liberec', owner:'Adam', email:'adam@example.com', phone:'+420700000006', images:['images/sv650_1.jpg','images/sv650_2.jpg'], desc:'Spolehlivá V2 klasika, ideál na první větší moto.'},
+];
+
+const $ = sel => document.querySelector(sel);
+const $$ = sel => Array.from(document.querySelectorAll(sel));
+
+const state = {
+  bikes: [],
+  filtered: [],
+  q:'', brand:'', year:'', price:'', sort:'-date'
+};
+
+function loadDB(){
+  const saved = localStorage.getItem('losmotos.db');
+  if(saved){
+    try{ state.bikes = JSON.parse(saved); }catch{ state.bikes = initialBikes }
+  } else {
+    state.bikes = initialBikes;
+  }
+  // add timestamps if missing
+  const now = Date.now();
+  state.bikes.forEach((b,i)=>{ if(!b.date){ b.date = now - i*3600_000 } });
+}
+
+function saveDB(){ localStorage.setItem('losmotos.db', JSON.stringify(state.bikes)); }
+
+function uniqueBrands(){ return [...new Set(state.bikes.map(b=>b.brand))].sort(); }
+
+function populateFilters(){
+  const brand = $('#brand');
+  brand.innerHTML = '<option value="">Značka</option>' + uniqueBrands().map(b=>`<option>${b}</option>`).join('');
+  const year = $('#year');
+  const years = [...new Set(state.bikes.map(b=>b.year))].sort((a,b)=>b-a);
+  year.innerHTML = '<option value="">Rok od</option>' + years.map(y=>`<option value="${y}">${y}</option>`).join('');
+}
+
+function humanPrice(v){ return v.toLocaleString('cs-CZ') + ' Kč'; }
+
+function applyFilters(){
+  const {q,brand,year,price,sort} = state;
+  let list = state.bikes.filter(b=>{
+    if(brand && b.brand!==brand) return false;
+    if(year && b.year < +year) return false;
+    if(price && b.price > +price) return false;
+    if(q){ const s=(b.brand+' '+b.model+' '+(b.desc||'')).toLowerCase(); if(!s.includes(q.toLowerCase())) return false; }
+    return true;
+  });
+  const cmp = (a,b,key,rev=false)=> (rev? (b[key]-a[key]) : (a[key]-b[key]));
+  switch(sort){
+    case 'price': list.sort((a,b)=>cmp(a,b,'price')); break;
+    case '-price': list.sort((a,b)=>cmp(a,b,'price',true)); break;
+    case 'year': list.sort((a,b)=>cmp(a,b,'year')); break;
+    case '-year': list.sort((a,b)=>cmp(a,b,'year',true)); break;
+    case 'km': list.sort((a,b)=>cmp(a,b,'km')); break;
+    case '-km': list.sort((a,b)=>cmp(a,b,'km',true)); break;
+    default: list.sort((a,b)=> (b.date||0) - (a.date||0));
+  }
+  state.filtered = list;
+  renderGrid();
+  renderStats();
+}
+
+function renderStats(){
+  $('#stCount').textContent = state.filtered.length;
+  const avg = state.filtered.length? Math.round(state.filtered.reduce((s,b)=>s+b.price,0)/state.filtered.length) : 0;
+  $('#stAvg').textContent = avg? humanPrice(avg) : '—';
+  const newest = state.filtered.reduce((m,b)=>Math.max(m,b.year||0),0);
+  $('#stNewest').textContent = newest||'—';
+}
+
+function card(b){
+  const img = (b.images&&b.images[0]) || 'images/placeholder.jpg';
+  return `<article class="card" data-id="${b.id}">
+    <div class="thumb">
+      <img loading="lazy" src="${img}" alt="${b.brand} ${b.model}">
+      <span class="badge">${b.cc} ccm · ${b.power||'?'} kW</span>
+    </div>
+    <div class="body">
+      <div class="title">
+        <h3>${b.brand} ${b.model}</h3>
+        <div class="price">${humanPrice(b.price)}</div>
+      </div>
+      <div class="meta">
+        <span>📅 ${b.year}</span>
+        <span>🛣️ ${b.km.toLocaleString('cs-CZ')} km</span>
+        <span>📍 ${b.location||'ČR'}</span>
+      </div>
+      <div class="actions">
+        <button class="btn" data-act="detail">Detail</button>
+        <a class="btn" href="mailto:${b.email||''}?subject=${encodeURIComponent(b.brand+' '+b.model)}">Kontakt</a>
+        <button class="btn" data-act="fav" title="Uložit">★</button>
+      </div>
+    </div>
+  </article>`;
+}
+
+function renderGrid(){
+  const grid = $('#grid');
+  grid.innerHTML = state.filtered.map(card).join('');
+  $('#empty').classList.toggle('hidden', state.filtered.length>0);
+}
+
+function openDetail(id){
+  const b = state.bikes.find(x=>x.id==id);
+  if(!b) return;
+  $('#mdTitle').textContent = `${b.brand} ${b.model} — ${humanPrice(b.price)}`;
+  $('#mdDesc').textContent = b.desc||'';
+  $('#mdImg').src = (b.images&&b.images[0]) || 'images/placeholder.jpg';
+  const th = $('#mdThumbs'); th.innerHTML = '';
+  (b.images||[]).forEach(src=>{
+    const d = document.createElement('div'); d.className='t';
+    d.innerHTML = `<img src="${src}" alt="náhled">`;
+    d.onclick = ()=>{ $('#mdImg').src = src };
+    th.appendChild(d);
+  });
+  const spec = $('#mdSpec');
+  spec.innerHTML = `
+    <tbody>
+      <tr><td>Rok</td><td><strong>${b.year}</strong></td></tr>
+      <tr><td>Kilometry</td><td><strong>${b.km.toLocaleString('cs-CZ')} km</strong></td></tr>
+      <tr><td>Objem</td><td><strong>${b.cc} ccm</strong></td></tr>
+      <tr><td>Výkon</td><td><strong>${b.power||'?'} kW</strong></td></tr>
+      <tr><td>Majitel</td><td>${b.owner||'—'}</td></tr>
+      <tr><td>Lokace</td><td>${b.location||'—'}</td></tr>
+    </tbody>`;
+  $('#mdMail').href = `mailto:${b.email||''}?subject=${encodeURIComponent(b.brand+' '+b.model)}&body=${encodeURIComponent('Dobrý den, mám zájem o '+b.brand+' '+b.model+'.')}`;
+  $('#mdCall').href = b.phone? `tel:${b.phone}` : '#';
+  $('#mdReserve').href = `mailto:${b.email||''}?subject=${encodeURIComponent('Rezervace: '+b.brand+' '+b.model)}`;
+  $('#modal').showModal();
+}
+
+function wireUI(){
+  ['q','brand','year','price','sort'].forEach(id=>{
+    $('#'+id).addEventListener('input', e=>{ state[id] = e.target.value; applyFilters(); })
+  });
+  $('#grid').addEventListener('click', e=>{
+    const btn = e.target.closest('[data-act]');
+    const card = e.target.closest('.card');
+    if(!btn || !card) return;
+    const id = card.getAttribute('data-id');
+    if(btn.dataset.act==='detail') openDetail(id);
+    if(btn.dataset.act==='fav'){
+      btn.textContent = '✓'; btn.title='Uloženo';
+      btn.style.outline = '2px solid var(--ok)';
+    }
+  });
+  $('#mdClose').onclick = ()=> $('#modal').close();
+  $('#btnAdd').onclick = ()=> $('#edit').showModal();
+  $('#btnAdd2').onclick = ()=> $('#edit').showModal();
+  $('#edClose').onclick = ()=> $('#edit').close();
+  $('#btnImport').onclick = ()=> { $('#edit').showModal(); $('#fileJson').click(); };
+  $('#fileJson').addEventListener('change', importJson, false);
+  $('#edForm').addEventListener('submit', submitForm, false);
+  $('#resetDb').onclick = ()=>{ if(confirm('Smazat lokální data?')){ localStorage.removeItem('losmotos.db'); loadDB(); populateFilters(); applyFilters(); } };
+}
+
+function nextId(){ return (state.bikes.reduce((m,b)=>Math.max(m,b.id||0),0) + 1); }
+
+function submitForm(evt){
+  evt.preventDefault();
+  const f = new FormData(evt.target);
+  const b = Object.fromEntries(f.entries());
+  ['year','price','km','cc','power'].forEach(k=> b[k] = b[k]? +b[k] : 0);
+  b.images = (b.images||'').split(',').map(s=>s.trim()).filter(Boolean);
+  b.id = nextId();
+  b.date = Date.now();
+  state.bikes.unshift(b);
+  saveDB(); populateFilters(); applyFilters();
+  evt.target.reset();
+  $('#edit').close();
+}
+
+async function importJson(evt){
+  const file = evt.target.files[0]; if(!file) return;
+  try{
+    const text = await file.text();
+    const arr = JSON.parse(text);
+    if(!Array.isArray(arr)) throw new Error('JSON musí být pole objektů');
+    // Basic sanitize
+    arr.forEach((b,i)=>{ b.id = nextId()+i; b.date = Date.now()-i*1000; b.images = Array.isArray(b.images)? b.images: (b.images? String(b.images).split(',').map(s=>s.trim()):[]); });
+    state.bikes = arr.concat(state.bikes);
+    saveDB(); populateFilters(); applyFilters();
+    alert('Import hotov: '+arr.length+' položek');
+  }catch(err){ alert('Chyba JSON: '+err.message); }
+}
+
+function init(){
+  $('#yearNow').textContent = new Date().getFullYear();
+  loadDB();
+  populateFilters();
+  applyFilters();
+  wireUI();
+}
+
+init();
+</script>
+</body>
+</html>
