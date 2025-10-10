@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>LosMotos – Bazar motorek</title>
-  <meta name="description" content="LosMotos – český bazar motorek. Prodej a nákup motocyklů, rychlé filtrování, vyhledávání, fotky a detailní parametry." />
+  <title>LosMotos – Bazar & Motosalon</title>
+  <meta name="description" content="LosMotos – kamenný motosalon a bazar motorek. Výkup a komisní prodej, financování, pojištění, dovoz a servis. Otevřeno Po–So v Praze." />
   <meta name="theme-color" content="#0f172a" />
   <meta property="og:title" content="LosMotos – Bazar motorek" />
   <meta property="og:description" content="Prohlédni si nabídku motorek, filtruj podle značky, roku či ceny a najdi tu pravou." />
@@ -109,6 +109,18 @@
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
     .hidden{display:none}
   </style>
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AutomotiveBusiness",
+    "name": "LosMotos",
+    "image": "images/og.jpg",
+    "address": {"@type":"PostalAddress","streetAddress":"Kolbenova 12","addressLocality":"Praha","postalCode":"190 00","addressCountry":"CZ"},
+    "telephone": "+420700000000",
+    "openingHours": ["Mo-Fr 10:00-18:00", "Sa 10:00-14:00"],
+    "url": "https://your-github-username.github.io/losmotos/"
+  }
+</script>
 </head>
 <body>
   <header>
@@ -120,9 +132,14 @@
         <span>LosMotos</span>
       </a>
       <div class="pill">
-        <button id="btnImport" title="Import inzerátů z JSON">Import JSON</button>
-        <button id="btnAdd" title="Přidat inzerát">+ Přidat</button>
-        <a class="cta" href="#contact" title="Kontakt">Kontakt</a>
+        <nav style="display:flex;gap:8px;flex-wrap:wrap">
+          <a class="btn" href="#nabidka">Nabídka</a>
+          <a class="btn" href="#vykup">Výkup</a>
+          <a class="btn" href="#sluzby">Služby</a>
+          <a class="btn" href="#onas">O&nbsp;nás</a>
+          <a class="cta" href="#kontakt">Kontakt</a>
+        </nav>
+        <a class="btn" href="tel:+420700000000" title="Zavolat">📞 +420 700 000 000</a>
       </div>
     </div>
   </header>
@@ -131,13 +148,18 @@
     <section class="hero">
       <div class="container wrap">
         <div class="hero-card">
-          <p style="margin:0;color:var(--accent-2);font-weight:700;letter-spacing:.3px">Český bazar motorek</p>
-          <h1>Najdi si svou další motorku. <span style="color:var(--accent)">Rychle</span>, přehledně a bez keců.</h1>
-          <p>Filtruj podle značky, roku, objemu, najetých km nebo ceny. Klikni na detail, prohlédni fotky a napiš majiteli. Vše funguje staticky na GitHub Pages – žádný backend, žádné starosti.</p>
+          <p style="margin:0;color:var(--accent-2);font-weight:700;letter-spacing:.3px">Kamenný motosalon & bazar</p>
+          <h1>LosMotos: výkup, prodej a servis motorek na jednom místě.</h1>
+          <p>Jsme malý nezávislý obchod s motorkami. Vykupujeme stroje za férové ceny, nabízíme <strong>komisní prodej</strong>, zajišťujeme <strong>financování i pojištění</strong>, dovoz a základní <strong>servis</strong>. Otevřeno Po–So v Praze. Vyber si motorku níž nebo nám pošli tu svou k výkupu.</p>
           <div class="stats">
-            <div class="stat"><strong id="stCount">—</strong><small>aktivních inzerátů</small></div>
+            <div class="stat"><strong id="stCount">—</strong><small>skladem</small></div>
             <div class="stat"><strong id="stAvg">—</strong><small>průměrná cena</small></div>
             <div class="stat"><strong id="stNewest">—</strong><small>nejnovější ročník</small></div>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px">
+            <a class="btn primary" href="#vykup">💸 Chci prodat motorku</a>
+            <a class="btn" href="#sluzby">🔧 Naše služby</a>
+            <a class="btn" href="#onas">🏁 O&nbsp;nás</a>
           </div>
         </div>
         <div class="search-panel">
@@ -170,21 +192,95 @@
       </div>
     </section>
 
-    <section class="section">
+    <section id="nabidka" class="section">
       <div class="container">
+        <h2 style="margin-top:0">Nabídka motorek skladem</h2>
+        <p style="color:var(--muted);margin-top:-6px">Všechny stroje prochází základní kontrolou. Možnost výkupu protiúčtem.</p>
         <div id="grid" class="grid" aria-live="polite"></div>
         <div id="empty" class="empty hidden">Nenalezeny žádné inzeráty. Změň filtr nebo přidej své <button class="btn" id="btnAdd2">+ Přidat</button>.</div>
       </div>
     </section>
 
-    <section id="contact" class="section">
+    <section id="sluzby" class="section">
+      <div class="container">
+        <div class="hero-card">
+          <h2 style="margin-top:0">Naše služby</h2>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+            <div class="spec"><h3>Komisní prodej</h3><p>Zařídíme nafocení, inzerci, jednání se zájemci a přepis. Jasná provize, bez skrytých poplatků.</p></div>
+            <div class="spec"><h3>Výkup za hotové</h3><p>Okamžitá nabídka po fotkách nebo osobně. Peníze ihned na ruku / na účet.</p></div>
+            <div class="spec"><h3>Servis a příprava</h3><p>Výměna oleje, brzd, řetězu, diagnostika, STK. Prohlídka na zvedáku před koupí.</p></div>
+            <div class="spec"><h3>Financování</h3><p>Leasing/úvěr u partnerů. Předběžné schválení během pár minut.</p></div>
+            <div class="spec"><h3>Povinné a havarijní</h3><p>Vyřídíme pojištění na místě, výběr z více pojišťoven.</p></div>
+            <div class="spec"><h3>Doprava</h3><p>Bezpečný dovoz motorky až k tobě domů po celé ČR.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="vykup" class="section">
+      <div class="container">
+        <div class="hero-card">
+          <h2 style="margin-top:0">Výkup motorek</h2>
+          <p>Pošli nám pár fotek a základní parametry – ozveme se s nezávaznou nabídkou ještě dnes.</p>
+          <div style="display:grid;grid-template-columns:1.4fr .6fr;gap:16px">
+            <form id="sellForm" class="spec">
+              <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px">
+                <input name="brand" placeholder="Značka" required>
+                <input name="model" placeholder="Model" required>
+                <input name="year" type="number" placeholder="Rok" required>
+                <input name="km" type="number" placeholder="Kilometry" required>
+                <input name="priceIdea" type="number" placeholder="Představa ceny (Kč)">
+                <input name="phone" placeholder="Telefon" required>
+              </div>
+              <textarea name="msg" rows="4" placeholder="Krátký popis / stav"></textarea>
+              <button class="btn primary" type="submit">Odeslat poptávku</button>
+            </form>
+            <div class="spec">
+              <h3>Proč s námi?</h3>
+              <ul>
+                <li>Rychlá nabídka a férové jednání</li>
+                <li>Možnost protiúčtu</li>
+                <li>Vyřízení formalit a přepisu</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="onas" class="section">
+      <div class="container">
+        <div class="hero-card">
+          <h2 style="margin-top:0">O nás</h2>
+          <p>LosMotos je lokální motosalon zaměřený na pečlivě vybrané ojeté motorky. Najdeš nás v Praze 9 – Kolbenova 12 (vjezd z ulice). Parkování u obchodu, metro B Vysočanská 6&nbsp;min chůze.</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+            <div class="spec">
+              <h3>Otevírací doba</h3>
+              <table>
+                <tr><td>Po–Pá</td><td><strong>10:00–18:00</strong></td></tr>
+                <tr><td>Sobota</td><td><strong>10:00–14:00</strong></td></tr>
+                <tr><td>Neděle</td><td>Zavřeno</td></tr>
+              </table>
+              <p style="margin-top:8px">Mimo otevírací dobu po domluvě.</p>
+            </div>
+            <div class="spec">
+              <h3>Kde nás najdeš</h3>
+              <p>Kolbenova 12, Praha 9</p>
+              <div style="aspect-ratio:16/9;background:#0c142c;border:1px solid rgba(255,255,255,.08);border-radius:12px;display:grid;place-items:center">Mapa (vložíš iframe Mapy.cz/Google)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="kontakt" class="section">
       <div class="container">
         <div class="hero-card">
           <h2 style="margin-top:0">Kontakt</h2>
-          <p>Chceš přidat větší počet motorek najednou? Pošli JSON / CSV nebo napiš zprávu.</p>
+          <p>Nejrychleji se nám dovoláš na telefonu, nebo napiš e‑mail.</p>
           <div style="display:grid;grid-template-columns:1fr 1fr; gap:16px">
-            <a class="btn" href="mailto:info@losmotos.cz?subject=Poptávka%20bazar" style="text-align:center;padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:#0c142c">✉️ info@losmotos.cz</a>
-            <a class="btn" href="https://wa.me/420000000000" target="_blank" rel="noopener" style="text-align:center;padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:#0c142c">💬 WhatsApp</a>
+            <a class="btn" href="tel:+420700000000" style="text-align:center;padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:#0c142c">📞 +420 700 000 000</a>
+            <a class="btn" href="mailto:info@losmotos.cz" style="text-align:center;padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:#0c142c">✉️ info@losmotos.cz</a>
           </div>
         </div>
       </div>
@@ -193,8 +289,8 @@
 
   <footer>
     <div class="container footer-grid">
-      <small>© <span id="yearNow"></span> LosMotos</small>
-      <small>Statická aplikace · GitHub Pages ready 🚀</small>
+      <small>© <span id="yearNow"></span> LosMotos • Kolbenova 12, Praha 9 • IČO 00000000</small>
+      <small>Kamenný motosalon & bazar • GitHub Pages ready 🚀</small>
     </div>
   </footer>
 
@@ -464,6 +560,20 @@ function init(){
 }
 
 init();
+</script>
+<div id="cookie" style="position:fixed;left:16px;right:16px;bottom:16px;background:#0c142c;border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:12px;display:none;box-shadow:var(--shadow)">
+  <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:space-between">
+    <span>🍪 Tento web používá pouze nezbytné cookies pro provoz (localStorage). Více v podmínkách.</span>
+    <div style="display:flex;gap:8px"><a class="btn" href="#">Podmínky</a><button id="cookieOk" class="btn primary">Souhlasím</button></div>
+  </div>
+</div>
+<script>
+  (function(){
+    if(!localStorage.getItem('lm.cookie')){ document.getElementById('cookie').style.display='block'; }
+    document.getElementById('cookieOk').onclick=function(){ localStorage.setItem('lm.cookie','1'); document.getElementById('cookie').remove(); };
+    // odeslání formuláře výkupu
+    const sf = document.getElementById('sellForm'); if(sf){ sf.addEventListener('submit', function(e){ e.preventDefault(); const d = Object.fromEntries(new FormData(sf).entries()); const mail = `mailto:info@losmotos.cz?subject=${encodeURIComponent('Výkup: '+(d.brand||'')+' '+(d.model||''))}&body=${encodeURIComponent(JSON.stringify(d,null,2))}`; window.location.href = mail; }); }
+  })();
 </script>
 </body>
 </html>
