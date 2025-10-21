@@ -3,233 +3,167 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>LosMotos Benešov – Bazar motorek & servis</title>
-  <meta name="description" content="LosMotos Benešov – bazar a prodej motorek v Benešově. Poctivě vybrané ojeté motocykly, servis, dovoz na objednávku a doprava po celé ČR." />
-  <meta name="keywords" content="LosMotos Benešov, bazar motorek Benešov, motorky Benešov, prodej motorek Benešov, servis motorek Benešov, bazar Benešov" />
+  <title>LosMotos Benešov – Bazar & Servis motorek</title>
+  <meta name="description" content="LosMotos Benešov – bazar a servis motorek. Poctivě vybrané ojeté motocykly, profesionální servis a osobní přístup. Najdete nás v Benešově." />
+  <meta name="keywords" content="LosMotos Benešov, bazar motorek Benešov, motorky Benešov, prodej motorek, servis motorek Benešov" />
   <meta property="og:title" content="LosMotos Benešov – Bazar motorek" />
-  <meta property="og:description" content="Prodej ojetých motorek a kvalitní servis v Benešově. Prohlédni si skladové stroje a ozvi se." />
-  <meta property="og:type" content="website" />
+  <meta property="og:description" content="Prodej a servis motorek v Benešově. Široká nabídka ojetých motorek a férové jednání." />
   <meta property="og:image" content="images/og.jpg" />
-  <meta property="og:url" content="https://your-github-username.github.io/losmotos/" />
-  <link rel="canonical" href="https://your-github-username.github.io/losmotos/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://xaspi7.github.io/losmotos/" />
+  <link rel="canonical" href="https://xaspi7.github.io/losmotos/" />
   <meta name="theme-color" content="#0f172a" />
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230f172a'/%3E%3Ctext x='50' y='64' text-anchor='middle' font-size='58'%3E%F0%9F%8F%8D%EF%B8%8F%3C/text%3E%3C/svg%3E">
-
-
   <style>
-    :root{
-      --bg:#0b1020; --panel:#0f172a; --ink:#e2e8f0; --muted:#9aa5b1;
-      --brand:#f97316; --ring:rgba(249,115,22,.35); --ok:#10b981;
-      --shadow:0 12px 32px rgba(0,0,0,.35);
+    :root {
+      --bg: #0b1020;
+      --panel: #0f172a;
+      --ink: #e2e8f0;
+      --muted: #9aa5b1;
+      --accent: #f97316;
+      --accent-2: #06b6d4;
+      --ring: rgba(249,115,22,.35);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
     }
     *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Noto Sans",sans-serif;
-      color:var(--ink);
-      background:
-        radial-gradient(1200px 600px at 10% -10%, #182449 0%, transparent 60%),
-        radial-gradient(900px 500px at 90% -20%, #10243a 0%, transparent 55%),
-        var(--bg);
+    body {
+      margin:0;
+      font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;
+      background: radial-gradient(900px 600px at 10% -10%, #182449 0%, transparent 60%), radial-gradient(800px 400px at 90% -20%, #0a3a45 0%, transparent 55%), var(--bg);
+      color: var(--ink);
     }
-    a{color:inherit;text-decoration:none}
-    .container{max-width:1200px;margin:0 auto;padding:0 16px}
+    a { color: inherit; text-decoration: none }
+    header {
+      position: sticky; top:0; z-index:50;
+      backdrop-filter: saturate(180%) blur(8px);
+      background: linear-gradient(180deg, rgba(11,16,32,.9), rgba(11,16,32,.75));
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .nav { display:flex; align-items:center; justify-content:space-between; padding:14px 24px; max-width:1200px; margin:auto }
+    .brand { display:flex; align-items:center; gap:12px; font-weight:800; font-size:20px }
+    .brand span { color:var(--accent) }
+    .pill a { padding:10px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.08); background:#0c142c; margin-left:8px; }
+    .pill a:hover { outline:2px solid var(--ring) }
+    .cta { background:linear-gradient(135deg,var(--accent),var(--accent-2)); font-weight:700; }
 
-    /* header */
-    header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(160%) blur(8px);
-      background:linear-gradient(180deg, rgba(11,16,32,.92), rgba(11,16,32,.75));
-      border-bottom:1px solid rgba(255,255,255,.06)}
-    .nav{display:flex;align-items:center;gap:12px;padding:14px 0}
-    .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.3px}
-    .logo{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;background:var(--brand);box-shadow:var(--shadow)}
-    .logo svg{width:22px;height:22px;fill:#0b1020}
-    .navlinks{display:flex;gap:8px;margin-left:auto}
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 14px;border-radius:12px;
-      background:#0c142c;border:1px solid rgba(255,255,255,.08);cursor:pointer;color:var(--ink)}
-    .btn:hover{outline:2px solid var(--ring)}
-    .cta{background:var(--brand);font-weight:700}
+    main { max-width:1200px; margin:auto; padding:20px }
 
-    /* hero */
-    .hero{padding:42px 0 24px}
-    .hero .wrap{display:grid;grid-template-columns:1.25fr .75fr;gap:22px}
-    .card{background:linear-gradient(160deg, rgba(15,23,42,.9), rgba(15,23,42,.7));
-      border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:22px;box-shadow:var(--shadow)}
-    .hero h1{margin:6px 0 8px;font-size:clamp(28px,3.4vw,46px)}
-    .hero p{color:var(--muted)}
-    .accent{color:var(--brand);font-weight:800;letter-spacing:.3px}
-    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
-    .stat{background:#0c142c;border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:12px;text-align:center}
-    .stat strong{display:block;font-size:20px}
+    .hero { padding:40px 0 20px }
+    .hero-card {
+      background:linear-gradient(160deg, rgba(15,23,42,.85), rgba(15,23,42,.55));
+      border:1px solid rgba(255,255,255,.08);
+      padding:24px;
+      border-radius:20px;
+      box-shadow:var(--shadow);
+    }
+    .hero-card h1 { font-size:clamp(28px,3.5vw,42px); margin:8px 0; color:var(--accent) }
+    .hero-card p { color:var(--muted) }
 
-    /* filters */
-    .filters{display:grid;grid-template-columns:1.2fr 1.2fr 1fr 1fr 1fr;gap:10px}
-    .filters select{width:100%;padding:12px;background:#0c142c;border:1px solid rgba(255,255,255,.08);border-radius:12px;color:var(--ink)}
-    .filters select:focus{outline:2px solid var(--ring)}
+    .grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:16px;
+      margin-top:20px;
+    }
+    .card {
+      background:linear-gradient(180deg, rgba(15,23,42,.9), rgba(15,23,42,.75));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:18px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      display:flex;
+      flex-direction:column;
+    }
+    .card img { width:100%; aspect-ratio:16/10; object-fit:cover; }
+    .card .body { padding:14px }
+    .card h3 { margin:0 0 6px 0; }
+    .price { font-weight:800; color:var(--accent); }
+    .meta { color:var(--muted); font-size:14px; display:flex; gap:10px; flex-wrap:wrap; }
 
-    /* listing */
-    .section{padding:22px 0 60px}
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-    @media (max-width:1000px){.hero .wrap{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr)}.filters{grid-template-columns:1fr 1fr 1fr 1fr 1fr}}
-    @media (max-width:640px){.grid{grid-template-columns:1fr}.navlinks{display:none}.filters{grid-template-columns:1fr 1fr}}
+    .spec {
+      background:#0c142c;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:14px;
+      padding:14px;
+      color:var(--ink);
+    }
+    h2 { color:var(--accent) }
 
-    .card.listing{display:flex;flex-direction:column;overflow:hidden}
-    .thumb{position:relative;aspect-ratio:16/10;background:#111}
-    .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-    .badge{position:absolute;top:10px;left:10px;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);
-      border:1px solid rgba(255,255,255,.15);padding:6px 10px;border-radius:999px;font-size:12px}
-    .body{padding:14px}
-    .tt{display:flex;justify-content:space-between;gap:8px;align-items:center}
-    .tt h3{margin:0;font-size:18px}
-    .price{font-weight:800;letter-spacing:.2px}
-    .meta{display:flex;gap:10px;color:var(--muted);font-size:13px;margin:6px 0 10px}
-    .actions{margin-top:auto;display:flex;gap:8px}
-    .actions .btn{flex:1}
+    footer {
+      border-top:1px solid rgba(255,255,255,.08);
+      color:var(--muted);
+      text-align:center;
+      padding:20px;
+      margin-top:60px;
+      font-size:14px;
+    }
 
-    .empty{padding:46px;text-align:center;color:var(--muted);border:1px dashed rgba(255,255,255,.15);border-radius:16px}
-
-    /* modal */
-    dialog{width:min(920px,94vw);border:1px solid rgba(255,255,255,.15);background:linear-gradient(160deg, rgba(15,23,42,.98), rgba(15,23,42,.92));
-      color:var(--ink);border-radius:20px;box-shadow:var(--shadow)}
-    dialog::backdrop{background:rgba(0,0,0,.55)}
-    .modal-head{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.08)}
-    .modal-body{padding:16px}
-    .detail{display:grid;grid-template-columns:1.1fr .9fr;gap:16px}
-    @media (max-width:900px){.detail{grid-template-columns:1fr}}
-    .gallery{display:grid;grid-template-columns:1fr .35fr;gap:10px}
-    .gallery .main{aspect-ratio:16/10;background:#111;border-radius:12px;overflow:hidden}
-    .gallery img{width:100%;height:100%;object-fit:cover}
-    .thumbs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-    .thumbs .t{aspect-ratio:16/10;overflow:hidden;border-radius:10px;cursor:pointer;border:1px solid rgba(255,255,255,.08)}
-    .spec{background:#0c142c;border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:14px}
-    .spec table{width:100%;border-collapse:separate;border-spacing:0 8px;font-size:14px}
-    .spec td:first-child{color:var(--muted);width:40%}
-
-    /* footer */
-    footer{border-top:1px solid rgba(255,255,255,.08);padding:26px 0;color:var(--muted)}
-    .footer-grid{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center}
+    .mapwrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.1);
+      box-shadow: 0 6px 16px rgba(0,0,0,.3);
+    }
+    .mapwrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      filter: contrast(1.1) saturate(1.1);
+    }
   </style>
-
-  <!-- JSON-LD -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"AutomotiveBusiness",
-    "name":"LosMotos Benešov",
-    "image":"images/og.jpg",
-    "address":{"@type":"PostalAddress","streetAddress":"Tyršova 45","addressLocality":"Benešov","postalCode":"256 01","addressCountry":"CZ"},
-    "telephone":"+420700000000",
-    "openingHours":["Mo-Fr 10:00-18:00","Sa 10:00-14:00"],
-    "areaServed":"CZ",
-    "url":"https://your-github-username.github.io/losmotos/"
-  }
-  </script>
 </head>
 <body>
   <header>
-    <div class="container nav">
-      <a class="brand" href="#" aria-label="LosMotos Benešov – domů">
-        <span class="logo" aria-hidden="true">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 14h2l3-5h3l2 2h3l3 3h2" stroke="black" stroke-width="2" fill="none"/><circle cx="7" cy="16" r="3"/><circle cx="19" cy="16" r="3"/></svg>
-        </span>
-        <span>LosMotos Benešov</span>
-      </a>
-      <div class="navlinks">
-        <a class="btn" href="#nabidka">Nabídka</a>
-        <a class="btn" href="#sluzby">Služby</a>
-        <a class="btn" href="#onas">O&nbsp;nás</a>
-        <a class="btn cta" href="#kontakt">Kontakt</a>
+    <div class="nav">
+      <a class="brand" href="#"><span>🏍️ LosMotos Benešov</span></a>
+      <div class="pill">
+        <a href="#nabidka">Nabídka</a>
+        <a href="#sluzby">Služby</a>
+        <a href="#onas">O&nbsp;nás</a>
+        <a href="#kontakt" class="cta">Kontakt</a>
       </div>
     </div>
   </header>
 
   <main>
-    <!-- HERO -->
     <section class="hero">
-      <div class="container wrap">
-        <div class="card">
-          <p class="accent">Bazar & servis motorek v Benešově</p>
-          <h1>Poctivě vybrané ojeté motorky skladem. Zastav se nebo napiš.</h1>
-          <p>Žádný komisní prodej, žádný výkup. Děláme to jednoduše – kvalitní stroje, transparentní stav a příprava na sezonu. Na přání zařídíme <strong>servis</strong>, <strong>dovoz</strong> a <strong>dopravu</strong> po celé ČR.</p>
-          <div class="stats">
-            <div class="stat"><strong id="stCount">—</strong><small>ks skladem</small></div>
-            <div class="stat"><strong id="stAvg">—</strong><small>průměrná cena</small></div>
-            <div class="stat"><strong id="stNewest">—</strong><small>nejnovější rok</small></div>
-          </div>
-        </div>
-
-        <div class="card">
-          <form id="filters" class="filters" onsubmit="return false">
-            <select id="brand" aria-label="Značka">
-              <option value="">Značka</option>
-            </select>
-            <select id="model" aria-label="Model" disabled>
-              <option value="">Model</option>
-            </select>
-            <select id="year" aria-label="Rok od">
-              <option value="">Rok od</option>
-            </select>
-            <select id="price" aria-label="Cena do">
-              <option value="">Cena do</option>
-              <option value="80000">80 000 Kč</option>
-              <option value="120000">120 000 Kč</option>
-              <option value="160000">160 000 Kč</option>
-              <option value="220000">220 000 Kč</option>
-              <option value="300000">300 000 Kč</option>
-            </select>
-            <select id="sort" aria-label="Řazení">
-              <option value="-date">Nejnovější</option>
-              <option value="price">Cena ↑</option>
-              <option value="-price">Cena ↓</option>
-              <option value="year">Rok ↑</option>
-              <option value="-year">Rok ↓</option>
-              <option value="km">Km ↑</option>
-              <option value="-km">Km ↓</option>
-            </select>
-          </form>
-        </div>
+      <div class="hero-card">
+        <h1>Poctivě vybrané ojeté motorky skladem.</h1>
+        <p>Žádný komisní prodej, žádný výkup. Děláme to jednoduše – kvalitní stroje, transparentní stav a příprava na sezónu.  
+        Na přání zařídíme <strong>servis, dovoz a dopravu</strong> po celé ČR.</p>
       </div>
     </section>
 
-    <!-- LISTING -->
-    <section id="nabidka" class="section">
-      <div class="container">
-        <h2 style="margin-top:0">Nabídka motorek</h2>
-        <p style="color:var(--muted);margin-top:-6px">Každá motorka prochází základní kontrolou. Testovací jízda po domluvě.</p>
-        <div id="grid" class="grid" aria-live="polite"></div>
-        <div id="empty" class="empty" hidden>Nic nenalezeno. Změň filtr.</div>
+    <section id="nabidka">
+      <h2>Nabídka motorek</h2>
+      <p style="color:var(--muted)">Každá motorka prochází základní kontrolou. Testovací jízda po domluvě.</p>
+      <div class="grid" id="grid"></div>
+    </section>
+
+    <section id="sluzby">
+      <h2>Naše služby</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px">
+        <div class="spec"><h3>Servis</h3><p>Olej, brzdy, řetěz, diagnostika, STK. Prohlídka na zvedáku před koupí.</p></div>
+        <div class="spec"><h3>Doprava</h3><p>Dovezeme ti motorku kamkoliv po celé ČR. Bezpečně a levně.</p></div>
+        <div class="spec"><h3>Dovoz</h3><p>Zajišťujeme individuální dovoz motorek z EU podle přání zákazníka.</p></div>
+        <div class="spec"><h3>Testovací jízda</h3><p>Po domluvě dle počasí a dokumentů. Vratná kauce.</p></div>
       </div>
     </section>
 
-    <!-- SLUZBY -->
-    <section id="sluzby" class="section">
-      <div class="container">
-        <div class="card">
-          <h2 style="margin-top:0">Naše služby</h2>
-          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
-            <div class="spec">
-              <h3>Servis a příprava</h3>
-              <p>Olej, brzdy, řetězovka, diagnostika, STK. Pečlivá kontrola před předáním.</p>
-            </div>
-            <div class="spec">
-              <h3>Dovoz na objednávku</h3>
-              <p>Najdeme a přivezeme ověřenou motorku z EU. Kontrola VIN a historie.</p>
-            </div>
-            <div class="spec">
-              <h3>Doprava po ČR</h3>
-              <p>Bezpečný převoz motorky až k tobě domů. Cena dle vzdálenosti.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ONAS -->
+    <!-- O NÁS -->
     <section id="onas" class="section">
       <div class="container">
-        <div class="card">
+        <div class="hero-card">
           <h2 style="margin-top:0">O nás</h2>
-          <p>Jsme lokální motosalon v Benešově. Najdeš nás na adrese <strong>Tyršova 45, 256&nbsp;01 Benešov</strong>. Parkování u obchodu. Fungujeme osobně, bez zbytečných řečí.</p>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+          <p>LosMotos je lokální motosalon zaměřený na pečlivě vybrané ojeté motorky.
+          Najdeš nás v Benešově – <strong>Tyršova 45</strong>.  
+          Parkování u obchodu, přátelský přístup a osobní jednání.</p>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
             <div class="spec">
               <h3>Otevírací doba</h3>
               <table>
@@ -239,226 +173,79 @@
               </table>
               <p style="color:var(--muted);margin-top:8px">Mimo otevírací dobu po domluvě.</p>
             </div>
+
             <div class="spec">
               <h3>Kde nás najdeš</h3>
               <p>Tyršova 45, 256 01 Benešov</p>
-              <div style="aspect-ratio:16/9;background:#0c142c;border:1px solid rgba(255,255,255,.1);border-radius:12px;display:grid;place-items:center">Mapa – vlož iframe Mapy.cz/Google</div>
+              <div class="mapwrap">
+                <iframe
+                  src="https://www.google.com/maps?q=Tyršova%2045,%20256%2001%20Bene%C5%A1ov&output=embed"
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  allowfullscreen>
+                </iframe>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- KONTAKT -->
-    <section id="kontakt" class="section">
-      <div class="container">
-        <div class="card">
-          <h2 style="margin-top:0">Kontakt</h2>
-          <p>Nejrychleji se k nám dovoláš po telefonu, nebo napiš e-mail.</p>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-            <a class="btn" style="text-align:center" href="tel:+420700000000">📞 +420 700 000 000</a>
-            <a class="btn" style="text-align:center" href="mailto:info@losmotos.cz">✉️ info@losmotos.cz</a>
-          </div>
-        </div>
-      </div>
+    <section id="kontakt">
+      <h2>Kontakt</h2>
+      <p>📍 Tyršova 45, 256 01 Benešov</p>
+      <p>📞 <a href="tel:+420700000000" style="color:var(--accent)">+420 700 000 000</a></p>
+      <p>✉️ <a href="mailto:info@losmotos.cz" style="color:var(--accent)">info@losmotos.cz</a></p>
+      <p>Otevřeno: Po–Pá 10:00–18:00, So 10:00–14:00</p>
     </section>
   </main>
 
   <footer>
-    <div class="container footer-grid">
-      <small>© <span id="yearNow"></span> LosMotos Benešov • Tyršova 45 • IČO 00000000</small>
-      <small>Prodej & servis • GitHub Pages ready 🚀</small>
-    </div>
+    © <span id="yearNow"></span> LosMotos Benešov • Poctivě vybrané motorky • IČO 00000000
   </footer>
 
-  <!-- DETAIL MODAL -->
-  <dialog id="modal">
-    <div class="modal-head">
-      <strong id="mdTitle">Detail</strong>
-      <button id="mdClose" class="btn" style="padding:8px 12px">Zavřít</button>
-    </div>
-    <div class="modal-body">
-      <div class="detail">
-        <div class="gallery">
-          <div class="main"><img id="mdImg" alt="Motorka" /></div>
-          <div class="thumbs" id="mdThumbs"></div>
-        </div>
-        <div>
-          <div class="spec"><table id="mdSpec"></table></div>
-          <div class="actions" style="margin-top:12px">
-            <a id="mdMail" class="btn" href="#">✉️ Napsat</a>
-            <a id="mdCall" class="btn" href="#">📞 Zavolat</a>
-            <a id="mdReserve" class="btn cta" href="#">Rezervovat</a>
+  <script>
+    const bikes = [
+      { brand:'Honda', model:'CB500F', year:2019, price:119000, km:18500, cc:471, power:35, location:'Praha', img:'images/cb500f.jpg' },
+      { brand:'Yamaha', model:'MT-07', year:2021, price:159000, km:12000, cc:689, power:54, location:'Brno', img:'images/mt07.jpg' },
+      { brand:'BMW', model:'R nineT', year:2017, price:259000, km:22000, cc:1170, power:81, location:'Plzeň', img:'images/rninet.jpg' },
+      { brand:'Kawasaki', model:'Z900', year:2020, price:199000, km:9500, cc:948, power:92, location:'Ostrava', img:'images/z900.jpg' },
+      { brand:'Ducati', model:'Monster 821', year:2018, price:229000, km:17000, cc:821, power:80, location:'Hradec Králové', img:'images/monster821.jpg' },
+      { brand:'Suzuki', model:'SV650', year:2016, price:99000, km:33000, cc:645, power:56, location:'Liberec', img:'images/sv650.jpg' },
+    ];
+
+    const grid = document.getElementById('grid');
+    const fmt = n => n.toLocaleString('cs-CZ');
+
+    grid.innerHTML = bikes.map(b=>`
+      <article class="card">
+        <img src="${b.img}" alt="${b.brand} ${b.model}">
+        <div class="body">
+          <h3>${b.brand} ${b.model}</h3>
+          <div class="price">${fmt(b.price)} Kč</div>
+          <div class="meta">
+            <span>📅 ${b.year}</span>
+            <span>🛣️ ${fmt(b.km)} km</span>
+            <span>⚙️ ${b.cc} ccm</span>
           </div>
         </div>
-      </div>
-      <p id="mdDesc" style="color:var(--muted);margin-top:16px"></p>
-    </div>
-  </dialog>
+      </article>
+    `).join('');
 
-  <script>
-  // ====== DATA – NAPOJENO NA TVÉ SOUBORY /images/*.jpg ======
-  const initialBikes = [
-    {id:1, brand:'Honda',   model:'CB500F',      year:2019, price:119000, km:18500, cc:471, power:35, location:'Benešov', images:['images/cb500f.jpg'],      desc:'Lehký naháč, ideální do města i na okresky. Serviska, 2 klíče.'},
-    {id:2, brand:'Yamaha',  model:'MT-07',       year:2021, price:159000, km:12000, cc:689, power:54, location:'Benešov', images:['images/mt07.jpg'],        desc:'Oblíbený dvouválec CP2 – hravý a spolehlivý.'},
-    {id:3, brand:'BMW',     model:'R nineT',     year:2017, price:259000, km:22000, cc:1170,power:81, location:'Benešov', images:['images/rninet.jpg'],      desc:'Retro boxer, krásné zpracování a charakter.'},
-    {id:4, brand:'Kawasaki',model:'Z900',        year:2020, price:199000, km:9500,  cc:948, power:92, location:'Benešov', images:['images/z900.jpg'],        desc:'Silný naked s pohodlnou pozicí.'},
-    {id:5, brand:'Ducati',  model:'Monster 821', year:2018, price:229000, km:17000, cc:821, power:80, location:'Benešov', images:['images/monster821.jpg'],  desc:'Italský charakter, pravidelný servis.'},
-    {id:6, brand:'Suzuki',  model:'SV650',       year:2016, price: 99000, km:33000, cc:645, power:56, location:'Benešov', images:['images/sv650.jpg'],       desc:'Spolehlivá V2 pro denní ježdění.'}
-  ];
-
-  // ====== HELPERS ======
-  const $ = s => document.querySelector(s);
-  const $$ = s => Array.from(document.querySelectorAll(s));
-  const state = { bikes:[], filtered:[], brand:'', model:'', year:'', price:'', sort:'-date' };
-
-  function humanPrice(v){ return v.toLocaleString('cs-CZ') + ' Kč'; }
-  function unique(arr){ return [...new Set(arr)]; }
-
-  function loadDB(){
-    // bez perzistence – držíme to čisté; když budeš chtít, dá se zapnout localStorage
-    state.bikes = initialBikes.map((b,i)=>({ ...b, date: Date.now()-i*3600_000 }));
-  }
-
-  function populateFilters(){
-    const brands = unique(state.bikes.map(b=>b.brand)).sort();
-    $('#brand').innerHTML = '<option value="">Značka</option>'+brands.map(b=>`<option>${b}</option>`).join('');
-
-    const years = unique(state.bikes.map(b=>b.year)).sort((a,b)=>b-a);
-    $('#year').innerHTML = '<option value="">Rok od</option>'+years.map(y=>`<option value="${y}">${y}</option>`).join('');
-
-    populateModels();
-  }
-
-  function populateModels(){
-    const modelEl = $('#model');
-    const models = state.brand ? unique(state.bikes.filter(b=>b.brand===state.brand).map(b=>b.model)).sort() : [];
-    modelEl.innerHTML = '<option value="">Model</option>'+models.map(m=>`<option>${m}</option>`).join('');
-    modelEl.disabled = models.length===0;
-    if(!models.includes(state.model)) state.model='';
-  }
-
-  function applyFilters(){
-    let list = state.bikes.filter(b=>{
-      if(state.brand && b.brand!==state.brand) return false;
-      if(state.model && b.model!==state.model) return false;
-      if(state.year && b.year < +state.year) return false;
-      if(state.price && b.price > +state.price) return false;
-      return true;
-    });
-
-    const cmp = (a,b,key,rev=false)=> rev ? (b[key]-a[key]) : (a[key]-b[key]);
-    switch(state.sort){
-      case 'price':   list.sort((a,b)=>cmp(a,b,'price')); break;
-      case '-price':  list.sort((a,b)=>cmp(a,b,'price',true)); break;
-      case 'year':    list.sort((a,b)=>cmp(a,b,'year')); break;
-      case '-year':   list.sort((a,b)=>cmp(a,b,'year',true)); break;
-      case 'km':      list.sort((a,b)=>cmp(a,b,'km')); break;
-      case '-km':     list.sort((a,b)=>cmp(a,b,'km',true)); break;
-      default:        list.sort((a,b)=> (b.date||0) - (a.date||0));
-    }
-
-    state.filtered = list;
-    renderGrid();
-    renderStats();
-  }
-
-  function renderStats(){
-    $('#stCount').textContent = state.filtered.length;
-    const avg = state.filtered.length ? Math.round(state.filtered.reduce((s,b)=>s+b.price,0)/state.filtered.length) : 0;
-    $('#stAvg').textContent = avg ? humanPrice(avg) : '—';
-    const newest = state.filtered.reduce((m,b)=>Math.max(m,b.year||0),0);
-    $('#stNewest').textContent = newest || '—';
-  }
-
-  function card(b){
-    const img = (b.images&&b.images[0]) || 'images/placeholder.jpg';
-    return `<article class="card listing" data-id="${b.id}">
-      <div class="thumb">
-        <img loading="lazy" src="${img}" alt="${b.brand} ${b.model}">
-        <span class="badge">${b.cc} ccm · ${b.power||'?'} kW</span>
-      </div>
-      <div class="body">
-        <div class="tt">
-          <h3>${b.brand} ${b.model}</h3>
-          <div class="price">${humanPrice(b.price)}</div>
-        </div>
-        <div class="meta">
-          <span>📅 ${b.year}</span>
-          <span>🛣️ ${b.km.toLocaleString('cs-CZ')} km</span>
-          <span>📍 ${b.location}</span>
-        </div>
-        <div class="actions">
-          <button class="btn" data-act="detail">Detail</button>
-          <a class="btn" href="mailto:info@losmotos.cz?subject=${encodeURIComponent(b.brand+' '+b.model)}">Napsat</a>
-          <button class="btn" data-act="fav" title="Uložit">★</button>
-        </div>
-      </div>
-    </article>`;
-  }
-
-  function renderGrid(){
-    const g = $('#grid');
-    g.innerHTML = state.filtered.map(card).join('');
-    $('#empty').hidden = state.filtered.length>0;
-  }
-
-  function openDetail(id){
-    const b = state.bikes.find(x=>x.id==id);
-    if(!b) return;
-    $('#mdTitle').textContent = `${b.brand} ${b.model} — ${humanPrice(b.price)}`;
-    $('#mdDesc').textContent = b.desc||'';
-    $('#mdImg').src = (b.images&&b.images[0]) || 'images/placeholder.jpg';
-    const th = $('#mdThumbs'); th.innerHTML = '';
-    (b.images||[]).forEach(src=>{
-      const d = document.createElement('div'); d.className='t';
-      d.innerHTML = `<img src="${src}" alt="náhled ${b.brand} ${b.model}">`;
-      d.onclick = ()=>{ $('#mdImg').src = src };
-      th.appendChild(d);
-    });
-    $('#mdSpec').innerHTML = `
-      <tbody>
-        <tr><td>Rok</td><td><strong>${b.year}</strong></td></tr>
-        <tr><td>Kilometry</td><td><strong>${b.km.toLocaleString('cs-CZ')} km</strong></td></tr>
-        <tr><td>Objem</td><td><strong>${b.cc} ccm</strong></td></tr>
-        <tr><td>Výkon</td><td><strong>${b.power||'?'} kW</strong></td></tr>
-        <tr><td>Lokace</td><td>${b.location}</td></tr>
-      </tbody>`;
-    $('#mdMail').href = `mailto:info@losmotos.cz?subject=${encodeURIComponent(b.brand+' '+b.model)}&body=${encodeURIComponent('Dobrý den, mám zájem o '+b.brand+' '+b.model+'.')}`;
-    $('#mdCall').href = `tel:+420700000000`;
-    $('#mdReserve').href = `mailto:info@losmotos.cz?subject=${encodeURIComponent('Rezervace: '+b.brand+' '+b.model)}`;
-    $('#modal').showModal();
-  }
-
-  function wireUI(){
-    ['brand','model','year','price','sort'].forEach(id=>{
-      $('#'+id).addEventListener('input', e=>{
-        state[id] = e.target.value;
-        if(id==='brand'){ populateModels(); }
-        applyFilters();
-      });
-    });
-
-    $('#grid').addEventListener('click', e=>{
-      const btn = e.target.closest('[data-act]');
-      const card = e.target.closest('.card');
-      if(!btn || !card) return;
-      const id = card.getAttribute('data-id');
-      if(btn.dataset.act==='detail') openDetail(id);
-      if(btn.dataset.act==='fav'){
-        btn.textContent = '✓'; btn.title='Uloženo';
-        btn.style.outline = '2px solid var(--ok)';
-      }
-    });
-
-    $('#mdClose').onclick = ()=> $('#modal').close();
-  }
-
-  function init(){
     document.getElementById('yearNow').textContent = new Date().getFullYear();
-    loadDB(); populateFilters(); applyFilters(); wireUI();
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AutomotiveBusiness",
+    "name": "LosMotos Benešov",
+    "image": "images/og.jpg",
+    "address": {"@type":"PostalAddress","streetAddress":"Tyršova 45","addressLocality":"Benešov","postalCode":"25601","addressCountry":"CZ"},
+    "telephone": "+420700000000",
+    "openingHours": ["Mo-Fr 10:00-18:00", "Sa 10:00-14:00"],
+    "url": "https://xaspi7.github.io/losmotos/"
   }
-  init();
   </script>
 </body>
 </html>
