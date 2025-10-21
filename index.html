@@ -3,14 +3,17 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>LosMotos – Bazar & Motosalon</title>
-  <meta name="description" content="LosMotos – kamenný motosalon a bazar motorek. Výkup, financování, dovoz a servis. Otevřeno Po–So v Praze." />
+  <title>LosMotos Benešov – Bazar motorek</title>
+  <meta name="description" content="LosMotos Benešov – bazar a prodej motorek v Benešově. Široká nabídka ojetých motocyklů, poctivý servis, dovoz a doprava po celé ČR." />
+  <meta name="keywords" content="LosMotos Benešov, bazar motorek Benešov, motorky Benešov, prodej motorek, servis motorek Benešov" />
   <meta name="theme-color" content="#0f172a" />
-  <meta property="og:title" content="LosMotos – Bazar motorek" />
-  <meta property="og:description" content="Nabídka motorek skladem, výkup, financování a servis. Praha 9." />
+  <meta property="og:title" content="LosMotos Benešov – Bazar motorek" />
+  <meta property="og:description" content="Prodej a servis motorek v Benešově. Nabídka ojetých motorek skladem + testovací jízdy, dovoz a doprava." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="images/og.jpg" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23f97316'/><text x='50' y='65' text-anchor='middle' font-size='60'>🏍️</text></svg>">
+  <meta property="og:url" content="https://your-github-username.github.io/losmotos/" />
+  <link rel="canonical" href="https://your-github-username.github.io/losmotos/" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23f97316'/><text x='50' y='65' text-anchor='middle' font-size='60'>🏍️</text></svg>'>
   <style>
     :root{
       --bg: #0b1020;          /* page bg in dark */
@@ -110,16 +113,15 @@
 <body>
   <header>
     <div class="container nav">
-      <a class="brand" href="#" aria-label="LosMotos – domů">
+      <a class="brand" href="#" aria-label="LosMotos Benešov – domů">
         <span class="logo" aria-hidden="true">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 14h2l3-5h3l2 2h3l3 3h2" stroke="black" stroke-width="2" fill="none"/><circle cx="7" cy="16" r="3"/><circle cx="19" cy="16" r="3"/></svg>
         </span>
-        <span>LosMotos</span>
+        <span>LosMotos Benešov</span>
       </a>
       <div class="pill">
         <nav style="display:flex;gap:8px;flex-wrap:wrap">
           <a class="btn" href="#nabidka">Nabídka</a>
-          <a class="btn" href="#vykup">Výkup</a>
           <a class="btn" href="#sluzby">Služby</a>
           <a class="btn" href="#onas">O&nbsp;nás</a>
           <a class="cta btn" href="#kontakt">Kontakt</a>
@@ -133,18 +135,13 @@
     <section class="hero">
       <div class="container wrap">
         <div class="hero-card">
-          <p class="badge-accent">Kamenný motosalon & bazar</p>
-          <h1>LosMotos: výkup, prodej a servis motorek na jednom místě.</h1>
-          <p>Jsme nezávislý obchod s motorkami. Vykupujeme stroje za férové ceny, zajišťujeme <strong>financování</strong>, dovoz a základní <strong>servis</strong>. Otevřeno Po–So v Praze. Vyber si motorku níž nebo nám pošli tu svou k výkupu.</p>
+          <p class="badge-accent">Kamenný prodej & servis motorek v Benešově</p>
+          <h1>LosMotos: kvalitní ojeté motorky skladem + profesionální servis.</h1>
+          <p>Jsme nezávislý motosalon v Benešově. Nabízíme pečlivě vybrané motorky, <strong>servis</strong>, <strong>dovoz</strong> na objednávku, <strong>financování</strong> a <strong>dopravu</strong> po celé ČR.</p>
           <div class="stats">
             <div class="stat"><strong id="stCount">—</strong><small>skladem</small></div>
             <div class="stat"><strong id="stAvg">—</strong><small>průměrná cena</small></div>
             <div class="stat"><strong id="stNewest">—</strong><small>nejnovější ročník</small></div>
-          </div>
-          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px">
-            <a class="btn primary" href="#vykup">💸 Chci prodat motorku</a>
-            <a class="btn" href="#sluzby">🔧 Naše služby</a>
-            <a class="btn" href="#onas">🏁 O&nbsp;nás</a>
           </div>
         </div>
         <div class="search-panel">
@@ -182,7 +179,7 @@
     <section id="nabidka" class="section">
       <div class="container">
         <h2 style="margin-top:0">Nabídka motorek skladem</h2>
-        <p style="color:var(--muted);margin-top:-6px">Všechny stroje prochází základní kontrolou. Možnost výkupu protiúčtem.</p>
+        <p style="color:var(--muted);margin-top:-6px">Každý stroj prochází základní kontrolou a přípravou. Testovací jízda po domluvě.</p>
         <div id="grid" class="grid" aria-live="polite"></div>
         <div id="empty" class="empty hidden">Nenalezeny žádné motorky podle filtru.</div>
       </div>
@@ -193,42 +190,11 @@
         <div class="hero-card">
           <h2 style="margin-top:0">Naše služby</h2>
           <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
-            <div class="spec"><h3>Výkup za hotové</h3><p>Okamžitá nabídka po fotkách nebo osobně. Peníze ihned na ruku / na účet.</p></div>
             <div class="spec"><h3>Servis a příprava</h3><p>Olej, brzdy, řetěz, diagnostika, STK. Prohlídka na zvedáku před koupí.</p></div>
             <div class="spec"><h3>Financování</h3><p>Leasing/úvěr u partnerů. Předběžné schválení během pár minut.</p></div>
             <div class="spec"><h3>Doprava</h3><p>Bezpečný dovoz motorky až k tobě domů po celé ČR.</p></div>
+            <div class="spec"><h3>Dovoz na objednávku</h3><p>Najdeme a přivezeme ověřený kus z EU, včetně kontroly historie.</p></div>
             <div class="spec"><h3>Testovací jízda</h3><p>Po domluvě dle počasí a dokumentů. Vratná kauce.</p></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="vykup" class="section">
-      <div class="container">
-        <div class="hero-card">
-          <h2 style="margin-top:0">Výkup motorek</h2>
-          <p>Pošli nám pár fotek a základní parametry – ozveme se s nezávaznou nabídkou ještě dnes.</p>
-          <div style="display:grid;grid-template-columns:1.4fr .6fr;gap:16px">
-            <form id="sellForm" class="spec">
-              <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px">
-                <input name="brand" placeholder="Značka" required>
-                <input name="model" placeholder="Model" required>
-                <input name="year" type="number" placeholder="Rok" required>
-                <input name="km" type="number" placeholder="Kilometry" required>
-                <input name="priceIdea" type="number" placeholder="Představa ceny (Kč)">
-                <input name="phone" placeholder="Telefon" required>
-              </div>
-              <textarea name="msg" rows="4" placeholder="Krátký popis / stav"></textarea>
-              <button class="btn primary" type="submit">Odeslat poptávku</button>
-            </form>
-            <div class="spec">
-              <h3>Proč s námi?</h3>
-              <ul>
-                <li>Rychlá nabídka a férové jednání</li>
-                <li>Možnost protiúčtu</li>
-                <li>Vyřízení formalit a přepisu</li>
-              </ul>
-            </div>
           </div>
         </div>
       </div>
@@ -238,7 +204,7 @@
       <div class="container">
         <div class="hero-card">
           <h2 style="margin-top:0">O nás</h2>
-          <p>LosMotos je lokální motosalon zaměřený na pečlivě vybrané ojeté motorky. Najdeš nás v Praze 9 – Kolbenova 12 (vjezd z ulice). Parkování u obchodu, metro B Vysočanská 6&nbsp;min chůze.</p>
+          <p>LosMotos je lokální motosalon zaměřený na pečlivě vybrané ojeté motorky. Najdeš nás v Benešově – Tyršova 45. Parkování u obchodu.</p>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
             <div class="spec">
               <h3>Otevírací doba</h3>
@@ -251,7 +217,7 @@
             </div>
             <div class="spec">
               <h3>Kde nás najdeš</h3>
-              <p>Kolbenova 12, Praha 9</p>
+              <p>Tyršova 45, 256 01 Benešov</p>
               <div style="aspect-ratio:16/9;background:#0c142c;border:1px solid rgba(255,255,255,.08);border-radius:12px;display:grid;place-items:center">Mapa (vložíš iframe Mapy.cz/Google)</div>
             </div>
           </div>
@@ -275,8 +241,8 @@
 
   <footer>
     <div class="container footer-grid">
-      <small>© <span id="yearNow"></span> LosMotos • Kolbenova 12, Praha 9 • IČO 00000000</small>
-      <small>Kamenný motosalon & bazar • GitHub Pages ready 🚀</small>
+      <small>© <span id="yearNow"></span> LosMotos Benešov • Tyršova 45 • IČO 00000000</small>
+      <small>Prodej & servis • GitHub Pages ready 🚀</small>
     </div>
   </footer>
 
@@ -337,21 +303,21 @@
             <label class="btn" for="fileJson" style="display:inline-flex;align-items:center;gap:8px;cursor:pointer">📁 Import JSON</label>
             <input id="fileJson" type="file" accept="application/json" class="sr-only" />
           </div>
-          <p style="color:var(--muted); margin-top:10px">Obrázky nahrávej do složky <code>/images</code> v repu a uveď názvy souborů (např. <code>cb500_1.jpg, cb500_2.jpg</code>). Žádný backend – vše běží v prohlížeči a ukládá se do <em>localStorage</em>.</p>
+          <p style="color:var(--muted); margin-top:10px">Obrázky nahrávej do složky <code>/images</code> v repu a uveď názvy souborů (např. <code>cb500f.jpg, mt07.jpg</code>). Žádný backend – vše běží v prohlížeči a ukládá se do <em>localStorage</em>.</p>
         </div>
       </form>
     </div>
   </dialog>
 
 <script>
-// --- Ukázková data (nahraď svými fotkami v /images) ---
+// --- Data: napojené na tvoje soubory v /images ---
 const initialBikes = [
-  {id:1, brand:'Honda', model:'CB500F', year:2019, price:119000, km:18500, cc:471, power:35, location:'Praha', owner:'Lukáš', email:'lukas@example.com', phone:'+420700000001', images:['images/cb500f_1.jpg','images/cb500f_2.jpg','images/cb500f_3.jpg'], desc:'Lehký naháč, perfektní do města i na okresky. Serviska, 2 klíče.'},
-  {id:2, brand:'Yamaha', model:'MT-07', year:2021, price:159000, km:12000, cc:689, power:54, location:'Brno', owner:'Jana', email:'jana@example.com', phone:'+420700000002', images:['images/mt07_1.jpg','images/mt07_2.jpg'], desc:'Zábavný dvouválec CP2, bez investic. Nové pneu 2024.'},
-  {id:3, brand:'BMW', model:'R nineT', year:2017, price:259000, km:22000, cc:1170, power:81, location:'Plzeň', owner:'Martin', email:'martin@example.com', phone:'+420700000003', images:['images/rninet_1.jpg','images/rninet_2.jpg','images/rninet_3.jpg'], desc:'Klasika s boxerem, spousta doplňků, originál díly přidám.'},
-  {id:4, brand:'Kawasaki', model:'Z900', year:2020, price:199000, km:9500, cc:948, power:92, location:'Ostrava', owner:'Petr', email:'petr@example.com', phone:'+420700000004', images:['images/z900_1.jpg'], desc:'Výkon i pohodlí. První majitel, garážovaná.'},
-  {id:5, brand:'Ducati', model:'Monster 821', year:2018, price:229000, km:17000, cc:821, power:80, location:'Hradec Králové', owner:'Eva', email:'eva@example.com', phone:'+420700000005', images:['images/monster_1.jpg','images/monster_2.jpg'], desc:'Italský charakter, pravidelný servis Ducati, quickshifter.'},
-  {id:6, brand:'Suzuki', model:'SV650', year:2016, price:99000, km:33000, cc:645, power:56, location:'Liberec', owner:'Adam', email:'adam@example.com', phone:'+420700000006', images:['images/sv650_1.jpg','images/sv650_2.jpg'], desc:'Spolehlivá V2 klasika, ideál na první větší moto.'},
+  {id:1, brand:'Honda',   model:'CB500F',        year:2019, price:119000, km:18500, cc:471, power:35, location:'Praha',          owner:'Lukáš',  email:'info@losmotos.cz', phone:'+420700000001', images:['images/cb500f.jpg'],     desc:'Lehký naháč, perfektní do města i na okresky. Serviska, 2 klíče.'},
+  {id:2, brand:'Yamaha',  model:'MT-07',         year:2021, price:159000, km:12000, cc:689, power:54, location:'Brno',           owner:'Jana',   email:'info@losmotos.cz', phone:'+420700000002', images:['images/mt07.jpg'],        desc:'Zábavný dvouválec CP2, bez investic. Nové pneu 2024.'},
+  {id:3, brand:'BMW',     model:'R nineT',       year:2017, price:259000, km:22000, cc:1170,power:81, location:'Plzeň',          owner:'Martin', email:'info@losmotos.cz', phone:'+420700000003', images:['images/rninet.jpg'],      desc:'Klasika s boxerem, spousta doplňků, originál díly přidám.'},
+  {id:4, brand:'Kawasaki',model:'Z900',          year:2020, price:199000, km:9500,  cc:948, power:92, location:'Ostrava',        owner:'Petr',   email:'info@losmotos.cz', phone:'+420700000004', images:['images/z900.jpg'],        desc:'Výkon i pohodlí. První majitel, garážovaná.'},
+  {id:5, brand:'Ducati',  model:'Monster 821',   year:2018, price:229000, km:17000, cc:821, power:80, location:'Hradec Králové', owner:'Eva',    email:'info@losmotos.cz', phone:'+420700000005', images:['images/monster821.jpg'],   desc:'Italský charakter, pravidelný servis Ducati, quickshifter.'},
+  {id:6, brand:'Suzuki',  model:'SV650',         year:2016, price: 99000, km:33000, cc:645, power:56, location:'Liberec',        owner:'Adam',   email:'info@losmotos.cz', phone:'+420700000006', images:['images/sv650.jpg'],        desc:'Spolehlivá V2 klasika, ideál na první větší moto.'},
 ];
 
 const $ = sel => document.querySelector(sel);
@@ -506,11 +472,10 @@ function wireUI(){
     }
   });
   $('#mdClose').onclick = ()=> $('#modal').close();
-  $('#btnAdd') && ($('#btnAdd').onclick = ()=> $('#edit').showModal());
-  $('#edClose').onclick = ()=> $('#edit').close();
-  $('#fileJson').addEventListener('change', importJson, false);
-  $('#edForm').addEventListener('submit', submitForm, false);
-  $('#resetDb').onclick = ()=>{ if(confirm('Smazat lokální data?')){ localStorage.removeItem('losmotos.db'); loadDB(); populateFilters(); applyFilters(); } };
+  const edClose = document.getElementById('edClose'); if(edClose) edClose.onclick = ()=> document.getElementById('edit').close();
+  const fileJson = document.getElementById('fileJson'); if(fileJson) fileJson.addEventListener('change', importJson, false);
+  const edForm = document.getElementById('edForm'); if(edForm) edForm.addEventListener('submit', submitForm, false);
+  const resetDb = document.getElementById('resetDb'); if(resetDb) resetDb.onclick = ()=>{ if(confirm('Smazat lokální data?')){ localStorage.removeItem('losmotos.db'); loadDB(); populateFilters(); applyFilters(); } };
 }
 
 function nextId(){ return (state.bikes.reduce((m,b)=>Math.max(m,b.id||0),0) + 1); }
@@ -526,7 +491,7 @@ function submitForm(evt){
   state.bikes.unshift(b);
   saveDB(); populateFilters(); applyFilters();
   evt.target.reset();
-  $('#edit').close();
+  document.getElementById('edit').close();
 }
 
 async function importJson(evt){
@@ -543,7 +508,7 @@ async function importJson(evt){
 }
 
 function init(){
-  $('#yearNow').textContent = new Date().getFullYear();
+  document.getElementById('yearNow').textContent = new Date().getFullYear();
   loadDB();
   populateFilters();
   applyFilters();
@@ -563,7 +528,6 @@ init();
   (function(){
     if(!localStorage.getItem('lm.cookie')){ document.getElementById('cookie').style.display='block'; }
     document.getElementById('cookieOk').onclick=function(){ localStorage.setItem('lm.cookie','1'); document.getElementById('cookie').remove(); };
-    const sf = document.getElementById('sellForm'); if(sf){ sf.addEventListener('submit', function(e){ e.preventDefault(); const d = Object.fromEntries(new FormData(sf).entries()); const mail = `mailto:info@losmotos.cz?subject=${encodeURIComponent('Výkup: '+(d.brand||'')+' '+(d.model||''))}&body=${encodeURIComponent(JSON.stringify(d,null,2))}`; window.location.href = mail; }); }
   })();
 </script>
 
@@ -571,9 +535,9 @@ init();
   {
     "@context": "https://schema.org",
     "@type": "AutomotiveBusiness",
-    "name": "LosMotos",
+    "name": "LosMotos Benešov",
     "image": "images/og.jpg",
-    "address": {"@type":"PostalAddress","streetAddress":"Kolbenova 12","addressLocality":"Praha","postalCode":"190 00","addressCountry":"CZ"},
+    "address": {"@type":"PostalAddress","streetAddress":"Tyršova 45","addressLocality":"Benešov","postalCode":"256 01","addressCountry":"CZ"},
     "telephone": "+420700000000",
     "openingHours": ["Mo-Fr 10:00-18:00", "Sa 10:00-14:00"],
     "url": "https://your-github-username.github.io/losmotos/"
